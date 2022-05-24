@@ -33,6 +33,14 @@ h1 a[id='export'] {
     left: 200pt;
 }
 
+h1 a[id='delete_worker'] {
+    color: #38EE0C;
+    font-size: 60%;
+    position: absolute;
+    bottom: 6pt;
+    right: 5pt;
+}
+
 h2[id='taskWorker'] {
     font-size: 150%;
     position: relative;

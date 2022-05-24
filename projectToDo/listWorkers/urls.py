@@ -10,6 +10,7 @@ from .views import (
     SortTaskListDate,
     exportcsv,
     first_page,
+    delete_worker,
 )
 
 urlpatterns = [
@@ -30,4 +31,5 @@ urlpatterns = [
         name="task_sortdate_list_url",
     ),
     path("<int:id_worker>/export-tasks", exportcsv, name="export_tasks"),
+    path("<int:id_worker>/delete", delete_worker, name="delete_worker"),
 ]

@@ -10,6 +10,7 @@
 <h1><a href="{% url 'task_sortstatus_list_url'  id_worker %} " id="status">Sorting by Status </a></h1>
 <h1><a href="{% url 'task_sortdate_list_url'  id_worker %}" id="date">Sorting by Date </a></h1>
 <h1><a href="{% url 'export_tasks'  id_worker %}" id="export">Export tasks </a></h1>
+<h1><a href="{% url 'delete_worker'  id_worker %}" id="delete_worker"> Delete employee profile </a>  </h1>
 <h2 id="taskWorker" align="left">Tasks of the employee: {{info.name}}</h2>
 <h3 id="newTask" align="center">Create new task</h3>
     <div class="col-8 mt-5">

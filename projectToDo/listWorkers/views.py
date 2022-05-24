@@ -128,3 +128,8 @@ def exportcsv(request, id_worker):
     for task in tasks:
         writer.writerow(task)
     return response
+
+def delete_worker(request, id_worker):
+    a=Employees_Task_List.objects.filter(idworker=id_worker).delete()
+    b=Workers.objects.filter(id=id_worker).delete()
+    return redirect('list_workers')
