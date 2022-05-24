@@ -1,0 +1,40 @@
+{% extends 'listWorkers/base.html' %}
+{% load static %}
+
+{% block css_aditional %}
+<link rel="stylesheet" href="{% static 'listWorkers/css/detail_worker_create_task.css'%}">
+{% endblock %}
+
+{% block content %}
+<h1 align="right"><a href="{% url 'list_workers'  %} " id="back">Back </a></h1>
+<h1><a href="{% url 'task_sortstatus_list_url'  id_worker %} " id="status">Sorting by Status </a></h1>
+<h1><a href="{% url 'task_sortdate_list_url'  id_worker %}" id="date">Sorting by Date </a></h1>
+<h1><a href="{% url 'export_tasks'  id_worker %}" id="export">Export tasks </a></h1>
+<h2 id="taskWorker" align="left">Tasks of the employee: {{info.name}}</h2>
+<h3 id="newTask" align="center">Create new task</h3>
+    <div class="col-8 mt-5">
+        <form class="form-inline justify-content-centr" id="createNewTaskForm" method="post" data-url="{% url 'task_list_url' id_worker%}">
+            {% csrf_token %}
+            {% for field in form %}
+                <div class="mx-3">
+                    {{ field }}
+                </div>
+            {% endfor %}
+
+            <button type="button" class="btn btn-outline-success mx-3" id="createButton"> create </button>
+        </form>
+    </div>
+
+    <div class="col-5 mt-5" id="taskList">
+        {% for task in tasks %}
+            <div class="card mb-1" id="taskCard" data-id="{{ task.id}}" style="{% if task.completed %} text-decoration: line-through {% endif %}">
+                <div class="card-body">
+                    <p>Description: {{ task.description }}<br>Status: {{task.status}}<br>Categories: {{ task.categories }}<br>Date of completion: {{ task.date_of_completion }}<br></p>
+                    <button type="button" class="close float-right" data-id="{{ task.id }}">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+{% endblock %}

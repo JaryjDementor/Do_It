@@ -1,0 +1,25 @@
+body {
+    background-color: #260640;
+}
+
+h1[id=create] a{
+    font-size: 80%;
+    color: #4AE1F0;
+}
+
+h3[id=workers]{
+    font-size: 200%;
+    color: #2A0347;
+}
+div[id=block]{
+    width: 200px;
+    background: #ccc;
+    padding: 5px;
+    padding-right: 20px;
+    border: solid 1px black;
+    float: left;
+}
+
+p a{
+    color: #4F596E;
+}

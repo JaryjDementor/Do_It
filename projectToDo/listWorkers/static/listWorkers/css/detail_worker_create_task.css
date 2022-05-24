@@ -1,0 +1,67 @@
+body {
+    background-color: #260640;
+}
+
+h1 a[id='back']{
+    color: #38EE0C;
+    font-size: 40%;
+    position: relative;
+    top: 0pt;
+    left: 0pt;
+}
+
+h1 a[id='status']{
+    color: #38EE0C;
+    font-size: 40%;
+    position: relative;
+    top: 0pt;
+    left: 0pt;
+}
+h1 a[id='date'] {
+    color: #38EE0C;
+    font-size: 40%;
+    position: relative;
+    top: -42pt;
+    left: 105pt;
+}
+
+h1 a[id='export'] {
+    color: #38EE0C;
+    font-size: 40%;
+    position: relative;
+    top: -84pt;
+    left: 200pt;
+}
+
+h2[id='taskWorker'] {
+    font-size: 150%;
+    position: relative;
+    top: -50pt;
+    left: 0pt;
+    color: #4AE1F0;
+}
+h3[id='newTask'] {
+    font-size: 150%;
+    color: #4AE1F0;
+    position: relative;
+    top: -76pt;
+    left: 0pt;
+}
+
+div form[id=createNewTaskForm] {
+    margin-right: 60pt;
+    margin-top: -100pt;
+    max-width: 500px;
+    font-size: 100%;
+    position: relative;
+    top: 0pt;
+    left: 400pt;
+}
+button[id=createButton]{
+    background-color: #06751A;
+    color: black;
+}
+
+div[id=taskCard]{
+    top: -300pt;
+}
