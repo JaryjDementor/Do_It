@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'crispy_forms',
     'listWorkers',
     'restToDoApp',
+    'accounts',
     'drf_multiple_model',
 ]
 

@@ -1,0 +1,29 @@
+body {
+    background-color: #260640;
+}
+
+div form {
+    position: relative;
+    top: -28pt;
+    left: 50%;
+    color: #4AE1F0;
+}
+
+
+div form p {
+    font-weight:300;
+    top: -1pt;
+
+}
+
+div p {
+    position: relative;
+    top: 20pt;
+    color: #4AE1F0;
+}
+
+p img{
+    width: 450pt;
+    position: relative;
+    top: -150%;
+}

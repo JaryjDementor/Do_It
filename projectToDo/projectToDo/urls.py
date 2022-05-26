@@ -20,6 +20,7 @@ from django.conf import settings
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('', include("accounts.urls")),
     path('tasks/', include("listWorkers.urls")),
     path('rest/', include("restToDoApp.urls")),
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

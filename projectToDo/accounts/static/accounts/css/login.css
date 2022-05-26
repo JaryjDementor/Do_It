@@ -1,0 +1,25 @@
+body {
+    background-color: #260640;
+}
+
+h1{
+    color: #4AE1F0;
+    font-size: 230%;
+    position: relative;
+    left: 50%;
+    top: 10pt;
+}
+
+div form {
+    font-size: 140%;
+    color: #4AE1F0;
+    position: relative;
+    left: 60%;
+}
+
+p img{
+    width: 550pt;
+    position: relative;
+    top: -200pt;
+    left: 30pt;
+}

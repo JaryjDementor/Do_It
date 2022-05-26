@@ -1,0 +1,27 @@
+{% extends 'listWorkers/base.html' %}
+{% load static %}
+
+{% block title %}
+Register
+{% endblock %}
+
+{% block css_aditional %}
+<link rel="stylesheet" href="{% static 'accounts/css/register.css'%}">
+
+{% endblock %}
+
+{% block content %}
+
+{% load crispy_forms_tags %}
+
+<!--Register-->
+<div class="container py-5" align="left">
+	<form method="POST">
+		{% csrf_token %}
+		<p>{{ register_form|crispy }}<p>
+		<button class="btn btn-primary" type="submit">Register</button>
+	</form>
+	<p class="text-center">If you already have an account, <a href="/login">login</a> instead.</p>
+</div>
+<p> <img src="static/accounts/img/todo3.jpeg" alt="альтернативный текст"> </p>
+{% endblock %}

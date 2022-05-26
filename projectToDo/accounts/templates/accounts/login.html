@@ -1,0 +1,23 @@
+{% extends 'accounts/base.html' %}
+{% load static %}
+
+{% block css_aditional %}
+<link rel="stylesheet" href="{% static 'accounts/css/login.css'%}">
+
+{% endblock %}
+
+{% block content %}
+
+{% load crispy_forms_tags %}
+
+
+<div class="container py-5">
+  <form method="POST">
+    {% csrf_token %}
+    <p id="form_login">{{ login_form|crispy }}</p>
+    <button class="btn btn-primary" type="submit">Login</button>
+  </form>
+</div>
+
+<p> <img src="static/accounts/img/todo3.jpeg" alt="альтернативный текст"> </p>
+{% endblock %}
