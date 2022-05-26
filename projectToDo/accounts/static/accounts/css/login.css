@@ -11,7 +11,7 @@ h1{
 }
 
 div form {
-    font-size: 140%;
+    font-size: 110%;
     color: #4AE1F0;
     position: relative;
     left: 60%;
@@ -20,6 +20,6 @@ div form {
 p img{
     width: 550pt;
     position: relative;
-    top: -200pt;
+    top: -190pt;
     left: 30pt;
 }
