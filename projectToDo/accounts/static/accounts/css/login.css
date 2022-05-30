@@ -1,0 +1,30 @@
+body {
+    background-color: #260640;
+}
+
+h1{
+    color: #4AE1F0;
+    font-size: 230%;
+    position: relative;
+    left: 50%;
+    top: 10pt;
+}
+
+div form {
+    font-size: 110%;
+    color: #4AE1F0;
+    position: relative;
+    left: 5%;
+}
+button{
+    width: 30pt;
+    height: 30pt
+
+}
+
+img[id=button]{
+    width: 600%;
+    color: #260640;
+    background-color: #260640;
+}
+

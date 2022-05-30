@@ -1,0 +1,16 @@
+body {
+    background-color: #260640;
+}
+
+
+h2[id=admin]{
+    color: yellow;
+
+}
+
+h2[id=user]{
+    position: relative;
+    left: 5pt;
+    color: yellow;
+
+}
