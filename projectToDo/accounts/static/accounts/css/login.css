@@ -14,12 +14,17 @@ div form {
     font-size: 110%;
     color: #4AE1F0;
     position: relative;
-    left: 60%;
+    left: 5%;
+}
+button{
+    width: 30pt;
+    height: 30pt
+
 }
 
-p img{
-    width: 550pt;
-    position: relative;
-    top: -190pt;
-    left: 30pt;
+img[id=button]{
+    width: 600%;
+    color: #260640;
+    background-color: #260640;
 }
+

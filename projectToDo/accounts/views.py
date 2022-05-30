@@ -14,6 +14,9 @@ from django.utils.encoding import force_bytes
 
 # Create your views here.
 
+def firstpage(request):
+    return render(request, 'accounts/first_page.html')
+
 def form_new_user(request):
     form = NewUserForm()
     return HttpResponseBadRequest(
