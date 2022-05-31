@@ -10,11 +10,11 @@ class DateInput(forms.DateInput):
 class NewWorkerForm(ModelForm):
     class Meta:
         model = models.Workers
-        fields = ["name", "surname"]
+        fields = ["id_team", "id_worker"]
 
         widgets = {
-            "name": TextInput(attrs={"class": "form-control", "placeholder": "name"}),
-            "surname": TextInput(
+            "id_team": TextInput(attrs={"class": "form-control", "placeholder": "name"}),
+            "id_worker": TextInput(
                 attrs={"class": "form-control", "placeholder": "surname"}
             ),
         }
