@@ -1,20 +1,72 @@
+from django.contrib.auth.models import User
+from django.core.exceptions import PermissionDenied
 from django.forms import model_to_dict
 from django.shortcuts import render, redirect
 from django.views import View
-from .forms import NewWorkerForm, NewTaskForm
-from .models import Workers, Employees_Task_List
+from .forms import WorkersForm, NewTaskForm, TeamsListForm
+from .models import Workers, Employees_Task_List, TeamsList
 from django.http import JsonResponse, HttpResponse
 import csv
 
+def check_log(id_user):
+    if id_user:
+        pass
+    else:
+        raise PermissionDenied()
 
-def first_page(request):
-    return render(request, "listWorkers/first_page.html")
+def profile_user(request):
+    iduser = request.user.id
+    check_log(iduser)
+    teams = TeamsList.objects.filter(id_admin=iduser)
+    return render(request, "listWorkers/profile_user.html", {'teams':teams, 'id': iduser})
+
+def create_new_team(request, iduser):
+    # id_user = request.user.id
+    if request.method == "POST":
+        form = TeamsListForm(request.POST)
+        if form.is_valid():
+            order = form.save(commit=False)
+            order.id_admin = iduser
+            order.save()
+            return redirect("profile_user")
+    form = TeamsListForm()
+    return render(request, "listWorkers/create_new team.html", {"form": form})
 
 
-def list_workers(request):
-    db = Workers.objects.all()
-    data = {"db": db}
+def list_workers(request, id_team):
+    db = Workers.objects.filter(id_team=id_team)
+    a=[]
+    for i in db:
+        # info_employee = User.objects.filter(id=i)
+        a.append(i)
+    # info_employee = User.objects.filter(id=db.id_worker)
+    data = {"db": db, 'a': a, 'id_team': id_team}
     return render(request, "listWorkers/list_workers.html", context=data)
+
+def add_an_employee(request, id_team):
+    bd = TeamsList.objects.filter(id=id_team)
+    if request.method == "POST":
+        form = WorkersForm(request.POST)
+        if form.is_valid():
+            order = form.save(commit=False)
+            order.id_team = id_team
+            user = User.objects.get(username=order.username)
+            order.id_worker = user.id
+            order.save()
+            return redirect("profile_user")
+    form = WorkersForm()
+    return render(request, "listWorkers/add_worker.html", {"form": form})
+
+
+
+
+
+
+
+
+
+
+
 
 
 def create_new_worker(request):

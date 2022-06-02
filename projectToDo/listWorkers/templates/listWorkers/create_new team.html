@@ -1,0 +1,20 @@
+{% extends 'listWorkers/base.html' %}
+{% load static %}
+
+{% block css_aditional %}
+<link rel="stylesheet" href="{% static 'listWorkers/css/create_new_worker.css'%}">
+{% endblock %}
+
+{% block content %}
+<h2>  Create new team </h2>
+<div class="features">
+<form method="post">
+{% csrf_token %}
+    <p>{{form.name_team}}</p><br>
+    <spam> {{ error }} </spam>
+    <button class="btn btn-success" type="submit"> Add </button>
+</form>
+</div>
+
+
+{% endblock %}

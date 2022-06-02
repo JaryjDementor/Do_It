@@ -6,12 +6,12 @@
 {% endblock %}
 
 {% block content %}
-    <h1 align="right" id="create"><a href="{% url 'create_new_worker' %}">Create new worker</a> </h1>
+    <h1 align="right" id="create"><a href="{% url 'add_an_employee' id_team %}">Add new employee</a> </h1>
     <div id="block">
         <h3 id="workers"> Workers: </h3>
 
-        {% for item in db %}
-            <p><a href="{% url 'task_list_url' item.id %}"><b>{{item.name}} {{item.surname}}</b></a></p>
+        {% for item in a %}
+            <p> {{item}}</b></a></p>
         {% endfor %}
     </div>
 {% endblock %}

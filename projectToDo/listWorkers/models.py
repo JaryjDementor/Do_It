@@ -4,6 +4,7 @@ from django.db.models import Model, CharField, DateTimeField, IntegerField
 class Workers(Model):
     id_team = IntegerField("id_team", max_length=1000, null=False)
     id_worker = IntegerField("id_worker", max_length=1000, null=False)
+    username = CharField("username", max_length=1000, null=False)
 
     class Meta:
         verbose_name = "Workers"

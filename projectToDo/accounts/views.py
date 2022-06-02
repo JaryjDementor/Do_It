@@ -33,15 +33,20 @@ def register_request(request):
         form = NewUserForm(request.POST)
         if form.is_valid():
             order = form.save(commit=False)
-            mail = order.email
-            email_from_bd = User.objects.filter(email=mail)
-            if email_from_bd:
-                assert HttpResponseBadRequest(form_new_user(request))
+            username = User.objects.filter(username=order.username)
+            if username:
+
+                form_new_user(request)
             else:
-                user = form.save()
-                login(request, user)
-                messages.success(request, "Registration successful.")
-                return HttpResponseRedirect("listWorkers/list_workers")
+                mail = order.email
+                email_from_bd = User.objects.filter(email=mail)
+                if email_from_bd:
+                    assert HttpResponseBadRequest(form_new_user(request))
+                else:
+                    user = form.save()
+                    login(request, user)
+                    messages.success(request, "Registration successful.")
+                    return redirect("profile_user")
     return HttpResponseBadRequest(form_new_user(request))
 
 
@@ -55,7 +60,7 @@ def login_request(request):
             if user is not None:
                 login(request, user)
                 messages.info(request, f"You are now logged in as {username}.")
-                return HttpResponseRedirect("accounts/view_notebooks")
+                return redirect("profile_user")
     form = AuthenticationForm()
     return HttpResponseBadRequest(
         render(

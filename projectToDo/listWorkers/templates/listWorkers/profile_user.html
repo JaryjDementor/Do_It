@@ -1,0 +1,17 @@
+{% extends 'listWorkers/base.html' %}
+{% load static %}
+
+{% block css_aditional %}
+<link rel="stylesheet" href="{% static 'listWorkers/css/profile_user.css'%}">
+{% endblock %}
+
+
+{% block content %}
+<h1 align="left" id="teams" > Your teams</h1>
+<h1 align="right" id="create_new_team"><a href="{% url 'create_new_team' id %}"> Create new team </a>  </h1>
+{% for item in teams %}
+    <p><a href="{% url 'list_workers' item.id %}">{{item.name_team}} </a></p>
+{% endfor %}
+
+
+{% endblock %}
