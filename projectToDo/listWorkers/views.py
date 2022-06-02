@@ -69,6 +69,44 @@ def add_an_employee(request, id_team):
     form = WorkersForm()
     return render(request, "listWorkers/add_worker.html", {"form": form})
 
+def my_tasks(request, iduser):
+    iduser = request.user.id
+    check_log(iduser)
+    tasks = Employees_Task_List.objects.filter(id_worker=iduser)
+
+class MyTasks(View):
+    def get(self, request, iduser):
+        id_user = request.user.id
+        check_log(id_user)
+        form = NewTaskForm()
+        tasks = Employees_Task_List.objects.filter(id_worker=iduser)
+        return render(
+            request,
+            "listWorkers/my_tasks.html",
+            {"form": form, "tasks": tasks, "id_worker": iduser},
+        )
+    def post(self, request, iduser):
+        id_user = request.user.id
+        check_log(id_user)
+        form = NewTaskForm(request.POST)
+
+        if form.is_valid():
+            new_task = form.save(commit=False)
+            new_task.id_worker = iduser
+            new_task.id_team = iduser
+            new_task.status = "Not complete"
+            new_task.save()
+            return JsonResponse({"task": model_to_dict(new_task)}, status=200)
+        else:
+            return redirect("my_tasks", iduser)
+
+class MyTasksComplete(View):
+    def post(self, request, id):
+        task = Employees_Task_List.objects.get(id=id)
+        task.status = "Completed"
+        task.save()
+        task.completed = True
+        return JsonResponse({"task": model_to_dict(task)}, status=200)
 
 
 
