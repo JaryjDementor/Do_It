@@ -7,15 +7,14 @@ class DateInput(forms.DateInput):
     input_type = "date"
 
 
-class NewWorkerForm(ModelForm):
+class WorkersForm(ModelForm):
     class Meta:
         model = models.Workers
-        fields = ["name", "surname"]
+        fields = ["username"]
 
         widgets = {
-            "name": TextInput(attrs={"class": "form-control", "placeholder": "name"}),
-            "surname": TextInput(
-                attrs={"class": "form-control", "placeholder": "surname"}
+            "username": TextInput(
+                attrs={"class": "form-control", "placeholder": "username"}
             ),
         }
 
@@ -33,4 +32,16 @@ class NewTaskForm(ModelForm):
                 attrs={"class": "form-control", "placeholder": "categories"}
             ),
             "date_of_completion": DateInput(),
+        }
+
+
+class TeamsListForm(ModelForm):
+    class Meta:
+        model = models.TeamsList
+        fields = ["name_team"]
+
+        widgets = {
+            "name_team": TextInput(
+                attrs={"class": "form-control", "placeholder": "name_team"}
+            ),
         }
