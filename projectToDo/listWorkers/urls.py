@@ -2,7 +2,6 @@ from django.urls import path
 
 from .views import (
     list_workers,
-    create_new_worker,
     TaskList,
     TaskComplete,
     TaskDelete,
@@ -20,8 +19,8 @@ urlpatterns = [
     path("create-new-team/<int:iduser>", create_new_team, name="create_new_team"),
     path("list-workers/<int:id_team>", list_workers, name="list_workers"),
     path("add-an-employee/<int:id_team>", add_an_employee, name="add_an_employee"),
-    path("create-new-worker", create_new_worker, name="create_new_worker"),
-    path("<int:id_worker>", TaskList.as_view(), name="task_list_url"),
+    path("<int:id_team>/<int:id_worker>", TaskList.as_view(), name="task_list_url"),
+
     path("<str:id>/completed/", TaskComplete.as_view(), name="task_complete_url"),
     path("<str:id>/delete/", TaskDelete.as_view(), name="task_delete_url"),
     path(

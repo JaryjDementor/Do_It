@@ -6,6 +6,7 @@
 {% endblock %}
 
 {% block content %}
+<h1> {{user.id}} </h1>
     <h5> <a href="{% url 'profile_user' %}"> Back </a></h5>
     {% for item in name_admin %}
     <h1 id="info_admin"> Team Leader:  {{item.first_name}}  </h1>
@@ -13,11 +14,11 @@
     {% for item in nameteam %}
     <h1 id="name_team"> Team:  {{item.name_team}}, {{item.id_admin}}  </h1>
      {% endfor %}
-    <h1 align="right" id="create"><a href="{% url 'add_an_employee' id_team %}">Add new employee</a> </h1>
+    <h1 align="right" id="create"><a href="{% url 'add_an_employee' id_team  %}">Add new employee</a> </h1>
     <div id="block">
         <h3 id="workers"> Workers: </h3>
         {% for item in db %}
-            <p> {{item.first_name}} {{item.last_name}}<br> Username-{{item.username}}</b></a></p>
+            <p> <a href="{% url 'task_list_url' item.id_team item.id_worker %}">{{item.first_name}} {{item.last_name}} </a><br> Username-{{item.username}}</b></a></p>
         {% endfor %}
     </div>
 {% endblock %}
