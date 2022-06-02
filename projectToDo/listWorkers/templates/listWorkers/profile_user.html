@@ -7,6 +7,7 @@
 
 
 {% block content %}
+<h4 id="logout"> <a href="{% url 'logout' %}"> Logout </a> </h4>
 <h1 align="left" id="teams" > Your teams</h1>
 <h1 align="right" id="create_new_team"><a href="{% url 'create_new_team' id %}"> Create new team </a>  </h1>
 {% for item in teams %}

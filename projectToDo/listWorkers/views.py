@@ -22,6 +22,8 @@ def profile_user(request):
 
 def create_new_team(request, iduser):
     # id_user = request.user.id
+    iduser = request.user.id
+    check_log(iduser)
     if request.method == "POST":
         form = TeamsListForm(request.POST)
         if form.is_valid():
@@ -34,6 +36,8 @@ def create_new_team(request, iduser):
 
 
 def list_workers(request, id_team):
+    iduser = request.user.id
+    check_log(iduser)
     nameteam = TeamsList.objects.filter(id=id_team)
     # info_admin = User.objects.filter(id=nameteam.id_admin)
     info_admin='a'
@@ -48,6 +52,8 @@ def list_workers(request, id_team):
     return render(request, "listWorkers/list_workers.html", context=data)
 
 def add_an_employee(request, id_team):
+    iduser = request.user.id
+    check_log(iduser)
     bd = TeamsList.objects.filter(id=id_team)
     if request.method == "POST":
         form = WorkersForm(request.POST)
@@ -68,6 +74,8 @@ def add_an_employee(request, id_team):
 
 class TaskList(View):
     def get(self, request, id_team, id_worker):
+        iduser = request.user.id
+        check_log(iduser)
         form = NewTaskForm()
         tasks = Employees_Task_List.objects.filter(id_worker=id_worker)
         return render(
@@ -77,6 +85,8 @@ class TaskList(View):
         )
 
     def post(self, request, id_team, id_worker):
+        iduser = request.user.id
+        check_log(iduser)
         form = NewTaskForm(request.POST)
 
         if form.is_valid():
@@ -95,6 +105,8 @@ class TaskList(View):
 
 class TaskComplete(View):
     def post(self, request, id):
+        iduser = request.user.id
+        check_log(iduser)
         task = Employees_Task_List.objects.get(id=id)
         task.status = "Completed"
         task.save()
@@ -104,13 +116,17 @@ class TaskComplete(View):
 
 class TaskDelete(View):
     def post(self, request, id):
+        iduser = request.user.id
+        check_log(iduser)
         task = Employees_Task_List.objects.get(id=id)
         task.delete()
         return JsonResponse({"result": "ok"}, status=200)
 
 
 class SortTaskListStatus(View):
-    def get(self, request, id_worker):
+    def get(self, request, id_team, id_worker):
+        iduser = request.user.id
+        check_log(iduser)
         form = NewTaskForm()
         tasks = Employees_Task_List.objects.filter(id_worker=id_worker).order_by(
             "-status"
@@ -118,10 +134,12 @@ class SortTaskListStatus(View):
         return render(
             request,
             "listWorkers/detail_worker_create_task.html",
-            {"form": form, "tasks": tasks, "id_worker": id_worker},
+            {"form": form, "tasks": tasks, "id_worker": id_worker, 'id_team': id_team},
         )
 
-    def post(self, request, id_worker):
+    def post(self, request, id_team, id_worker):
+        iduser = request.user.id
+        check_log(iduser)
         form = NewTaskForm(request.POST)
 
         if form.is_valid():
@@ -135,18 +153,22 @@ class SortTaskListStatus(View):
 
 
 class SortTaskListDate(View):
-    def get(self, request, id_worker):
+    def get(self, request, id_team, id_worker):
+        iduser = request.user.id
+        check_log(iduser)
         form = NewTaskForm()
-        tasks = Employees_Task_List.objects.filter(idworker=id_worker).order_by(
+        tasks = Employees_Task_List.objects.filter(id_worker=id_worker).order_by(
             "date_of_completion"
         )
         return render(
             request,
             "listWorkers/detail_worker_create_task.html",
-            {"form": form, "tasks": tasks, "id_worker": id_worker},
+            {"form": form, "tasks": tasks, "id_worker": id_worker, 'id_team': id_team},
         )
 
     def post(self, request, id_worker):
+        iduser = request.user.id
+        check_log(iduser)
         form = NewTaskForm(request.POST)
 
         if form.is_valid():
