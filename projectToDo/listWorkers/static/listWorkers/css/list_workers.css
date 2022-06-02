@@ -1,6 +1,9 @@
 body {
     background-color: #260640;
 }
+h1[id=name_team]{
+    color:red;
+}
 
 h1[id=create] a{
     font-size: 80%;

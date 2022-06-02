@@ -34,13 +34,17 @@ def create_new_team(request, iduser):
 
 
 def list_workers(request, id_team):
+    nameteam = TeamsList.objects.filter(id=id_team)
+    # info_admin = User.objects.filter(id=nameteam.id_admin)
+    info_admin='a'
+    for i in nameteam:
+        info_admin = i.id_admin
+    name_admin = User.objects.filter(id=info_admin)
     db = Workers.objects.filter(id_team=id_team)
     a=[]
-    for i in db:
-        # info_employee = User.objects.filter(id=i)
-        a.append(i)
+
     # info_employee = User.objects.filter(id=db.id_worker)
-    data = {"db": db, 'a': a, 'id_team': id_team}
+    data = {"db": db, 'a': a, 'id_team': id_team, 'nameteam': nameteam, 'name_admin': name_admin}
     return render(request, "listWorkers/list_workers.html", context=data)
 
 def add_an_employee(request, id_team):
@@ -52,8 +56,10 @@ def add_an_employee(request, id_team):
             order.id_team = id_team
             user = User.objects.get(username=order.username)
             order.id_worker = user.id
+            order.first_name = user.first_name
+            order.last_name = user.last_name
             order.save()
-            return redirect("profile_user")
+            return redirect("list_workers", id_team)
     form = WorkersForm()
     return render(request, "listWorkers/add_worker.html", {"form": form})
 
