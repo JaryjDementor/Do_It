@@ -27,11 +27,17 @@
             <div class="card mb-1" id="taskCard" data-id="{{ task.id}}" style="{% if task.completed %} text-decoration: line-through {% endif %}">
                 <div class="card-body">
                     <p>Description: {{ task.description }}<br>Status: {{task.status}}<br>Categories: {{ task.categories }}<br>Date of completion: {{ task.date_of_completion }}<br></p>
-                    <button type="button" class="close float-right" data-id="{{ task.id }}">
+                    {% if id_worker == user.id %}
+                        <button type="button" class="close float-right" data-id="{{ task.id }}">
                         <span aria-hidden="true">&times;</span>
-                    </button>
+
+                        </button>
+                    {% endif %}
                 </div>
             </div>
         {% endfor %}
     </div>
+
+
 {% endblock %}
+<script src="{% static 'listWorkers/js/my_tasks.js' %}"></script>

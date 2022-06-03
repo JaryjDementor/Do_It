@@ -15,6 +15,7 @@ class Workers(Model):
 
 
 class Employees_Task_List(Model):
+    id_creator = IntegerField("id_creator", max_length=1000, null=False)
     id_worker = IntegerField("id_worker", max_length=1000, null=False)
     id_team = IntegerField("id_team", max_length=1000, null=False)
     description = CharField("description", max_length=1000, null=False)

@@ -92,6 +92,7 @@ class MyTasks(View):
 
         if form.is_valid():
             new_task = form.save(commit=False)
+            new_task.id_creator = id_user
             new_task.id_worker = iduser
             new_task.id_team = iduser
             new_task.status = "Not complete"
@@ -123,12 +124,13 @@ class TaskList(View):
         )
 
     def post(self, request, id_team, id_worker):
-        iduser = request.user.id
-        check_log(iduser)
+        id_user = request.user.id
+        check_log(id_user)
         form = NewTaskForm(request.POST)
 
         if form.is_valid():
             new_task = form.save(commit=False)
+            new_task.id_creator = id_user
             new_task.id_worker = id_worker
             new_task.id_team = id_team
             new_task.status = "Not complete"
