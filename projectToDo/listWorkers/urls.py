@@ -2,7 +2,6 @@ from django.urls import path
 
 from .views import (
     list_workers,
-    create_new_worker,
     TaskList,
     TaskComplete,
     TaskDelete,
@@ -13,6 +12,8 @@ from .views import (
     delete_worker,
     create_new_team,
     add_an_employee,
+    MyTasks,
+    MyTasksComplete,
 )
 
 urlpatterns = [
@@ -20,17 +21,20 @@ urlpatterns = [
     path("create-new-team/<int:iduser>", create_new_team, name="create_new_team"),
     path("list-workers/<int:id_team>", list_workers, name="list_workers"),
     path("add-an-employee/<int:id_team>", add_an_employee, name="add_an_employee"),
-    path("create-new-worker", create_new_worker, name="create_new_worker"),
-    path("<int:id_worker>", TaskList.as_view(), name="task_list_url"),
+    path("my-tasks/<int:iduser>", MyTasks.as_view(), name="my_tasks"),
+    path("my-tasks/<str:id>/completed/", MyTasksComplete.as_view(), name="my_tasks_complete"),
+
+    path("<int:id_team>/<int:id_worker>", TaskList.as_view(), name="task_list_url"),
+
     path("<str:id>/completed/", TaskComplete.as_view(), name="task_complete_url"),
     path("<str:id>/delete/", TaskDelete.as_view(), name="task_delete_url"),
     path(
-        "<int:id_worker>/sort-status",
+        "<int:id_team>/<int:id_worker>/sort-status",
         SortTaskListStatus.as_view(),
         name="task_sortstatus_list_url",
     ),
     path(
-        "<int:id_worker>/sort-date",
+        "<int:id_team>/<int:id_worker>/sort-date",
         SortTaskListDate.as_view(),
         name="task_sortdate_list_url",
     ),

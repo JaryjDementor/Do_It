@@ -1,20 +1,16 @@
 {% extends 'listWorkers/base.html' %}
 {% load static %}
 
-{% block css_aditional %}
-<link rel="stylesheet" href="{% static 'listWorkers/css/detail_worker_create_task.css'%}">
-{% endblock %}
+
 
 {% block content %}
-<h1 align="right"><a href="{% url 'list_workers' id_team %} " id="back">Back </a></h1>
-<h1><a href="{% url 'task_sortstatus_list_url' id_team id_worker %} " id="status">Sorting by Status </a></h1>
-<h1><a href="{% url 'task_sortdate_list_url' id_team id_worker %}" id="date">Sorting by Date </a></h1>
+<h1 align="right"><a href="{% url 'profile_user' %} " id="back">Back </a></h1>
 <h1><a href="{% url 'export_tasks'  id_worker %}" id="export">Export tasks </a></h1>
-<h1><a href="{% url 'delete_worker'  id_worker %}" id="delete_worker"> Delete employee profile </a>  </h1>
 <h2 id="taskWorker" align="left">Tasks of the employee: {{info.name}}</h2>
 <h3 id="newTask" align="center">Create new task</h3>
+
     <div class="col-8 mt-5">
-        <form class="form-inline justify-content-centr" id="createNewTaskForm" method="post" data-url="{% url 'task_list_url' id_team id_worker%}">
+        <form class="form-inline justify-content-centr" id="createNewTaskForm" method="post" data-url="{% url 'my_tasks' user.id%}">
             {% csrf_token %}
             {% for field in form %}
                 <div class="mx-3">
@@ -31,12 +27,18 @@
             <div class="card mb-1" id="taskCard" data-id="{{ task.id}}" style="{% if task.completed %} text-decoration: line-through {% endif %}">
                 <div class="card-body">
                     <p>Description: {{ task.description }}<br>Status: {{task.status}}<br>Categories: {{ task.categories }}<br>Date of completion: {{ task.date_of_completion }}<br></p>
-                    <button type="button" class="close float-right" data-id="{{ task.id }}">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
+
+                    {% if task.id_creator == user.id %}
+                        <button type="button" class="close float-right" data-id="{{ task.id }}">
+                            <span aria-hidden="true">&times;</span>
+
+                        </button>
+                        {% endif %}
                 </div>
             </div>
         {% endfor %}
     </div>
-<script src="{% static 'listWorkers/js/list_workers.js' %}"></script>
+
+
 {% endblock %}
+<script src="{% static 'listWorkers/js/my_tasks.js' %}"></script>

@@ -22,6 +22,8 @@ def profile_user(request):
 
 def create_new_team(request, iduser):
     # id_user = request.user.id
+    iduser = request.user.id
+    check_log(iduser)
     if request.method == "POST":
         form = TeamsListForm(request.POST)
         if form.is_valid():
@@ -34,6 +36,8 @@ def create_new_team(request, iduser):
 
 
 def list_workers(request, id_team):
+    iduser = request.user.id
+    check_log(iduser)
     nameteam = TeamsList.objects.filter(id=id_team)
     # info_admin = User.objects.filter(id=nameteam.id_admin)
     info_admin='a'
@@ -48,6 +52,8 @@ def list_workers(request, id_team):
     return render(request, "listWorkers/list_workers.html", context=data)
 
 def add_an_employee(request, id_team):
+    iduser = request.user.id
+    check_log(iduser)
     bd = TeamsList.objects.filter(id=id_team)
     if request.method == "POST":
         form = WorkersForm(request.POST)
@@ -63,44 +69,70 @@ def add_an_employee(request, id_team):
     form = WorkersForm()
     return render(request, "listWorkers/add_worker.html", {"form": form})
 
+def my_tasks(request, iduser):
+    iduser = request.user.id
+    check_log(iduser)
+    tasks = Employees_Task_List.objects.filter(id_worker=iduser)
 
-
-
-
-
-
-
-
-
-
-
-
-def create_new_worker(request):
-    if request.method == "POST":
-        form = NewWorkerForm(request.POST)
-        if form.is_valid():
-            form.save()
-            return redirect("list_workers")
-    form = NewWorkerForm()
-    return render(request, "listWorkers/create_new_worker.html", {"form": form})
-
-
-class TaskList(View):
-    def get(self, request, id_worker):
+class MyTasks(View):
+    def get(self, request, iduser):
+        id_user = request.user.id
+        check_log(id_user)
         form = NewTaskForm()
-        tasks = Employees_Task_List.objects.filter(idworker=id_worker)
+        tasks = Employees_Task_List.objects.filter(id_worker=iduser)
         return render(
             request,
-            "listWorkers/detail_worker_create_task.html",
-            {"form": form, "tasks": tasks, "id_worker": id_worker},
+            "listWorkers/my_tasks.html",
+            {"form": form, "tasks": tasks, "id_worker": iduser},
         )
-
-    def post(self, request, id_worker):
+    def post(self, request, iduser):
+        id_user = request.user.id
+        check_log(id_user)
         form = NewTaskForm(request.POST)
 
         if form.is_valid():
             new_task = form.save(commit=False)
-            new_task.idworker = id_worker
+            new_task.id_creator = id_user
+            new_task.id_worker = iduser
+            new_task.id_team = iduser
+            new_task.status = "Not complete"
+            new_task.save()
+            return JsonResponse({"task": model_to_dict(new_task)}, status=200)
+        else:
+            return redirect("my_tasks", iduser)
+
+class MyTasksComplete(View):
+    def post(self, request, id):
+        task = Employees_Task_List.objects.get(id=id)
+        task.status = "Completed"
+        task.save()
+        task.completed = True
+        return JsonResponse({"task": model_to_dict(task)}, status=200)
+
+
+
+class TaskList(View):
+    def get(self, request, id_team, id_worker):
+        iduser = request.user.id
+        check_log(iduser)
+        form = NewTaskForm()
+        tasks = Employees_Task_List.objects.filter(id_worker=id_worker)
+        return render(
+            request,
+            "listWorkers/detail_worker_create_task.html",
+            {"form": form, "tasks": tasks, "id_worker": id_worker, "id_team": id_team},
+        )
+
+    def post(self, request, id_team, id_worker):
+        id_user = request.user.id
+        check_log(id_user)
+        form = NewTaskForm(request.POST)
+
+        if form.is_valid():
+            new_task = form.save(commit=False)
+            new_task.id_creator = id_user
+            new_task.id_worker = id_worker
+            new_task.id_team = id_team
             new_task.status = "Not complete"
             new_task.save()
             return JsonResponse({"task": model_to_dict(new_task)}, status=200)
@@ -108,8 +140,13 @@ class TaskList(View):
             return redirect("task_list_url")
 
 
+
+
+
 class TaskComplete(View):
     def post(self, request, id):
+        iduser = request.user.id
+        check_log(iduser)
         task = Employees_Task_List.objects.get(id=id)
         task.status = "Completed"
         task.save()
@@ -119,30 +156,36 @@ class TaskComplete(View):
 
 class TaskDelete(View):
     def post(self, request, id):
+        iduser = request.user.id
+        check_log(iduser)
         task = Employees_Task_List.objects.get(id=id)
         task.delete()
         return JsonResponse({"result": "ok"}, status=200)
 
 
 class SortTaskListStatus(View):
-    def get(self, request, id_worker):
+    def get(self, request, id_team, id_worker):
+        iduser = request.user.id
+        check_log(iduser)
         form = NewTaskForm()
-        tasks = Employees_Task_List.objects.filter(idworker=id_worker).order_by(
+        tasks = Employees_Task_List.objects.filter(id_worker=id_worker).order_by(
             "-status"
         )
         return render(
             request,
             "listWorkers/detail_worker_create_task.html",
-            {"form": form, "tasks": tasks, "id_worker": id_worker},
+            {"form": form, "tasks": tasks, "id_worker": id_worker, 'id_team': id_team},
         )
 
-    def post(self, request, id_worker):
+    def post(self, request, id_team, id_worker):
+        iduser = request.user.id
+        check_log(iduser)
         form = NewTaskForm(request.POST)
 
         if form.is_valid():
             new_task = form.save(commit=False)
             new_task.status = "Not complete"
-            new_task.idworker = id_worker
+            new_task.id_worker = id_worker
             new_task.save()
             return JsonResponse({"task": model_to_dict(new_task)}, status=200)
         else:
@@ -150,24 +193,28 @@ class SortTaskListStatus(View):
 
 
 class SortTaskListDate(View):
-    def get(self, request, id_worker):
+    def get(self, request, id_team, id_worker):
+        iduser = request.user.id
+        check_log(iduser)
         form = NewTaskForm()
-        tasks = Employees_Task_List.objects.filter(idworker=id_worker).order_by(
+        tasks = Employees_Task_List.objects.filter(id_worker=id_worker).order_by(
             "date_of_completion"
         )
         return render(
             request,
             "listWorkers/detail_worker_create_task.html",
-            {"form": form, "tasks": tasks, "id_worker": id_worker},
+            {"form": form, "tasks": tasks, "id_worker": id_worker, 'id_team': id_team},
         )
 
     def post(self, request, id_worker):
+        iduser = request.user.id
+        check_log(iduser)
         form = NewTaskForm(request.POST)
 
         if form.is_valid():
             new_task = form.save(commit=False)
             new_task.status = "Not complete"
-            new_task.idworker = id_worker
+            new_task.id_worker = id_worker
             new_task.save()
             return JsonResponse({"task": model_to_dict(new_task)}, status=200)
         else:
@@ -175,7 +222,7 @@ class SortTaskListDate(View):
 
 
 def exportcsv(request, id_worker):
-    employee_tasks = Employees_Task_List.objects.filter(idworker=id_worker)
+    employee_tasks = Employees_Task_List.objects.filter(id_worker=id_worker)
     response = HttpResponse("workersTask/csv")
     response["Content-Disposition"] = "attachment; filename=tasksWorker.csv"
     writer = csv.writer(response)
@@ -188,6 +235,6 @@ def exportcsv(request, id_worker):
     return response
 
 def delete_worker(request, id_worker):
-    a=Employees_Task_List.objects.filter(idworker=id_worker).delete()
+    a=Employees_Task_List.objects.filter(id_worker=id_worker).delete()
     b=Workers.objects.filter(id=id_worker).delete()
     return redirect('list_workers')
