@@ -11,10 +11,11 @@ Register
 {% endblock %}
 
 {% block content %}
-
+<!--<img align="left" id="image" src="static/accounts/img/reg3.png"><br>-->
+<img align="left" id="image3" src="static/accounts/img/regist.png">
 {% load crispy_forms_tags %}
-
 <!--Register-->
+
 <div class="container py-5" align="left">
 	<form method="POST">
 		{% csrf_token %}
@@ -23,5 +24,5 @@ Register
 	</form>
 	<p class="text-center">If you already have an account, <a href="/login">login</a> instead.</p>
 </div>
-<p> <img src="static/accounts/img/register8.png" alt="альтернативный текст"> </p>
+
 {% endblock %}

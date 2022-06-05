@@ -1,5 +1,5 @@
 body {
-    background-color: #260640;
+    background-color: black;
 }
 
 h1{
@@ -12,14 +12,16 @@ h1{
 
 div form {
     font-size: 110%;
-    color: #4AE1F0;
+    color: white;
     position: relative;
     left: 5%;
 }
-button{
-    width: 30pt;
-    height: 30pt
 
+img[id=image]{
+    width: 10%;
+    position: absolute;
+    bottom: 80pt;
+    right: 120pt;
 }
 
 img[id=button]{

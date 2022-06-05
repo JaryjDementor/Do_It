@@ -1,18 +1,10 @@
-from django.core.mail import send_mail
 from django.shortcuts import render, redirect
-from django.utils.http import urlsafe_base64_encode
 from .forms import NewUserForm
 from django.contrib.auth import login, authenticate, logout
 from django.contrib import messages
-from django.contrib.auth.forms import AuthenticationForm, PasswordResetForm
-from django.http import HttpResponse, HttpResponseBadRequest, HttpResponseRedirect
+from django.contrib.auth.forms import AuthenticationForm
+from django.http import  HttpResponseBadRequest
 from django.contrib.auth.models import User
-from django.template.loader import render_to_string
-from django.db.models.query import Q
-from django.contrib.auth.tokens import default_token_generator
-from django.utils.encoding import force_bytes
-
-# Create your views here.
 
 def firstpage(request):
     return render(request, 'accounts/first_page.html')
