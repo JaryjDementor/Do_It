@@ -1,16 +1,35 @@
-body {
-    background-color: #260640;
+body{
+    background-color: black;
+    background-size: 100% auto;
+}
+div {
+    position: absolute;
+    top: 10%;
+    left: 40%;
+    writing-mode: tb-rl;
+    transform: rotate(250deg);
 }
 
-
-h2[id=admin]{
-    color: yellow;
-
+h2[id=todo]  {
+    font-size: 500%;
+    color: white;
 }
-
-h2[id=user]{
+h5  {
+    color: white;
+    font-size: 300%;
     position: relative;
-    left: 5pt;
-    color: yellow;
+    left: 50pt;
+    top: 26pt;
+}
+a[id=register] {
+    color: white;
+}
+a[id=login] {
+    color: white;
+    position: relative;
+    left: -5pt;
+}
 
+img[id=image2]{
+    width: 30%;
 }

@@ -11,12 +11,12 @@
 {% load crispy_forms_tags %}
 
 
-<div class="container py-5">
+<div class="container py-5" align="left">
   <form method="POST">
     {% csrf_token %}
     <p id="form_login">{{ login_form|crispy }}</p>
-    <button  class="btn btn-primary" type="submit"><img align="left" id="button" src="static/accounts/img/login2.png"></button>
+    <button  class="btn btn-primary" type="submit"> Login </button>
   </form>
 </div>
-
+<img align="left" id="image" src="static/accounts/img/login-128.png">
 {% endblock %}

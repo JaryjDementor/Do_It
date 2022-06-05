@@ -7,7 +7,11 @@
 {% endblock %}
 
 {% block content %}
-<h2 align="center" id="admin"> <a href="{% url 'register'  %}" id="register"> Register like admin</a></h2>
-<h2 align="left" id="user"><a href="{% url 'login'  %}" id="login"> login </a> </h2>
+<div>
+    <h2 id="todo"> TO DO LIST:</h2>
+    <h5><a href="{% url 'register'  %}" id="register"> 1. Register </a><br>
+   <a href="{% url 'login'  %}" id="login"> 2. login </a></h5>
 
+    </div>
+<img align="left" id="image2" src="static/accounts/img/todol.png">
 {% endblock %}

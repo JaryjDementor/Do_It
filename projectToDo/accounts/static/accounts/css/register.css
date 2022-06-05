@@ -1,12 +1,21 @@
 body {
-    background-color: #260640;
+    background-color: black;
 }
+
+
+img[id=image3] {
+    width: 20%;
+    position: absolute;
+    top: 80pt;
+    left: 120pt;
+}
+
 
 div form {
     position: relative;
     top: -28pt;
     left: 50%;
-    color: #4AE1F0;
+    color: white;
 }
 
 
@@ -19,7 +28,7 @@ div form p {
 div p {
     position: relative;
     top: 20pt;
-    color: #4AE1F0;
+    color: white;
 }
 
 p img{
