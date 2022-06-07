@@ -17,16 +17,21 @@ div form {
     left: 5%;
 }
 
-img[id=image]{
+input[id=login]{
     width: 10%;
-    position: absolute;
-    bottom: 80pt;
-    right: 120pt;
+    position: relative;
+    top: 10pt;
+    left: 18%;
 }
 
-img[id=button]{
-    width: 600%;
-    color: #260640;
-    background-color: #260640;
+img[id=register]{
+    width: 10%;
+    position: absolute;
+    bottom: 20pt;
+    right: 20pt;
 }
+
+
+
+
 

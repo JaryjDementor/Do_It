@@ -1,15 +1,46 @@
-h1[id=teams]{
-    color: #4AE1F0;
+body {
+    background-color: black;
 }
 
-h1[id=create_team] a {
-  color: #F1EA08;
+img[id=logout] {
+    width:50pt;
+    position: absolute;
+    top: 5pt;
+    right: 5pt;
+}
+
+img[id=newteam]{
+    width: 5%;
+    position: absolute;
+    top: 20pt;
+    left: 45pt;
+}
+
+img[id=todo1]{
+    width: 5%;
+    position: absolute;
+    top: 20pt;
+    left: 140pt;
+}
+
+h5[id=teams]{
+    color: white;
+    position: absolute;
+    top: 110pt;
+    left: 45pt;
 }
 
 p {
-    color: red;
+    position: relative;
+    top: 130pt;
+    left: 5pt;
 }
 
-body {
-    background-color: #260640;
+img[id=teams2]{
+    width: 2%;
+
+}
+
+a[id=yourteam]{
+    color: white;
 }

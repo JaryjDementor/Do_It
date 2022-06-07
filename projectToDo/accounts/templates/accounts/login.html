@@ -15,8 +15,8 @@
   <form method="POST">
     {% csrf_token %}
     <p id="form_login">{{ login_form|crispy }}</p>
-    <button  class="btn btn-primary" type="submit"> Login </button>
+    <input align="left" id="login" type="image" src="static/accounts/img/login (1).png">
   </form>
 </div>
-<img align="left" id="image" src="static/accounts/img/login-128.png">
+ <a id="create" href="register" > <img id="register" src="static/accounts/img/reg3.png"> </a>
 {% endblock %}
