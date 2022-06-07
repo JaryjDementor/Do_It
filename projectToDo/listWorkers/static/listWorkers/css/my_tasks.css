@@ -10,6 +10,7 @@ img[id=logout] {
 }
 
 img[id=back]{
+    width: 3%;
     position: absolute;
     top: 15pt;
     left: 15pt;
@@ -41,4 +42,20 @@ div[id=taskList]{
     position: relative;
     top: 100pt;
     left:20pt;
+}
+
+button[id=delete]{
+    color:white;
+    background: red;
+    position: absolute;
+    right: 1%;
+    bottom: 1%;
+
+}
+
+img[id=todolist]{
+    width: 13%;
+    position: absolute;
+    bottom: 5%;
+    right: 5%;
 }

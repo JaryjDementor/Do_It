@@ -8,7 +8,7 @@
 {% block content %}
 
 <a href="{% url 'logout' %}"><img align="right" src="/static/listWorkers/img/logout.png" id="logout">  </a>
-<a href="{% url 'profile_user' %}"> <img id="back" src="/static/listWorkers/img/back.png"> </a>
+<a href="{% url 'profile_user' %}"> <img id="back" src="/static/listWorkers/img/back2.png"> </a>
 <a href="{% url 'add_an_employee' id_team %}"><img id="add_employee" src="/static/listWorkers/img/add_worker.png"></a>
 
     <div id="info_team">
@@ -25,7 +25,7 @@
         <h3 id="workers"> Workers: </h3>
         {% for item in db %}
             <div id="block_employe">
-            <p> <img id="employee" src="/static/listWorkers/img/employee.png"> <a id="info_employee" href="{% url 'task_list_url' item.id_team item.id_worker %}">{{item.first_name}} {{item.last_name}} </a><br> <p id="username">Username-{{item.username}}</p>
+            <p> <img id="employee" src="/static/listWorkers/img/employee.png"> <a id="info_employee" href="{% url 'task_list_url' item.id_team item.id_worker %}">{{item.first_name}} {{item.last_name}} <br> <p id="username">Username-{{item.username}}</p></a>
             </div>
                 {% endfor %}
     </div>

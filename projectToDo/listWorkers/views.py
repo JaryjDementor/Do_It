@@ -67,7 +67,7 @@ def add_an_employee(request, id_team):
             order.save()
             return redirect("list_workers", id_team)
     form = WorkersForm()
-    return render(request, "listWorkers/add_worker.html", {"form": form})
+    return render(request, "listWorkers/add_worker.html", {"form": form, 'id_team': id_team})
 
 def my_tasks(request, iduser):
     iduser = request.user.id
@@ -163,63 +163,6 @@ class TaskDelete(View):
         return JsonResponse({"result": "ok"}, status=200)
 
 
-class SortTaskListStatus(View):
-    def get(self, request, id_team, id_worker):
-        iduser = request.user.id
-        check_log(iduser)
-        form = NewTaskForm()
-        tasks = Employees_Task_List.objects.filter(id_worker=id_worker).order_by(
-            "-status"
-        )
-        return render(
-            request,
-            "listWorkers/detail_worker_create_task.html",
-            {"form": form, "tasks": tasks, "id_worker": id_worker, 'id_team': id_team},
-        )
-
-    def post(self, request, id_team, id_worker):
-        iduser = request.user.id
-        check_log(iduser)
-        form = NewTaskForm(request.POST)
-
-        if form.is_valid():
-            new_task = form.save(commit=False)
-            new_task.status = "Not complete"
-            new_task.id_worker = id_worker
-            new_task.save()
-            return JsonResponse({"task": model_to_dict(new_task)}, status=200)
-        else:
-            return redirect("task_list_url")
-
-
-class SortTaskListDate(View):
-    def get(self, request, id_team, id_worker):
-        iduser = request.user.id
-        check_log(iduser)
-        form = NewTaskForm()
-        tasks = Employees_Task_List.objects.filter(id_worker=id_worker).order_by(
-            "date_of_completion"
-        )
-        return render(
-            request,
-            "listWorkers/detail_worker_create_task.html",
-            {"form": form, "tasks": tasks, "id_worker": id_worker, 'id_team': id_team},
-        )
-
-    def post(self, request, id_worker):
-        iduser = request.user.id
-        check_log(iduser)
-        form = NewTaskForm(request.POST)
-
-        if form.is_valid():
-            new_task = form.save(commit=False)
-            new_task.status = "Not complete"
-            new_task.id_worker = id_worker
-            new_task.save()
-            return JsonResponse({"task": model_to_dict(new_task)}, status=200)
-        else:
-            return redirect("task_list_url")
-
 
 def exportcsv(request, id_worker):
     employee_tasks = Employees_Task_List.objects.filter(id_worker=id_worker)
@@ -234,7 +177,7 @@ def exportcsv(request, id_worker):
         writer.writerow(task)
     return response
 
-def delete_worker(request, id_worker):
-    a=Employees_Task_List.objects.filter(id_worker=id_worker).delete()
-    b=Workers.objects.filter(id=id_worker).delete()
-    return redirect('list_workers')
+def delete_worker(request, id_worker, id_team):
+    a=Employees_Task_List.objects.filter(id_worker=id_worker, id_team=id_team).delete()
+    b=Workers.objects.filter(id_worker=id_worker, id_team=id_team).delete()
+    return redirect('list_workers', id_team)
