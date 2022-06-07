@@ -1,0 +1,44 @@
+body {
+    background-color: black;
+}
+
+img[id=logout] {
+    width:50pt;
+    position: absolute;
+    top: 2pt;
+    right: 2pt;
+}
+
+img[id=back]{
+    position: absolute;
+    top: 15pt;
+    left: 15pt;
+}
+
+img[id=export]{
+    width: 5%;
+    position: absolute;
+    top: 10pt;
+    left: 85pt;
+}
+
+h2[id=taskWorker]{
+    color: white;
+    position: absolute;
+    top: 15%;
+}
+
+div[id=create_task]{
+    width: 500pt;
+    position: absolute;
+    top: 15%;
+    right:20pt;
+}
+
+div[id=taskList]{
+    width: 300pt;
+    height: 100pt;
+    position: relative;
+    top: 100pt;
+    left:20pt;
+}

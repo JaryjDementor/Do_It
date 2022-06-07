@@ -2,14 +2,17 @@
 {% load static %}
 
 
+{% block css_aditional %}
+<link rel="stylesheet" href="{% static 'listWorkers/css/my_tasks.css'%}">
+{% endblock %}
 
 {% block content %}
-<h1 align="right"><a href="{% url 'profile_user' %} " id="back">Back </a></h1>
-<h1><a href="{% url 'export_tasks'  id_worker %}" id="export">Export tasks </a></h1>
-<h2 id="taskWorker" align="left">Tasks of the employee: {{info.name}}</h2>
-<h3 id="newTask" align="center">Create new task</h3>
+<a href="{% url 'logout' %}"><img align="right" src="/static/listWorkers/img/logout.png" id="logout">  </a>
+<a href="{% url 'profile_user' %}"> <img id="back" src="/static/listWorkers/img/back.png"> </a>
+<a href="{% url 'export_tasks' user.id %}"> <img id="export" src="/static/listWorkers/img/export_csv2.png"> </a>
+<h2 id="taskWorker" align="left">Your tasks: {{info.name}}</h2>
 
-    <div class="col-8 mt-5">
+    <div class="col-8 mt-5" id="create_task">
         <form class="form-inline justify-content-centr" id="createNewTaskForm" method="post" data-url="{% url 'my_tasks' user.id%}">
             {% csrf_token %}
             {% for field in form %}
@@ -17,8 +20,7 @@
                     {{ field }}
                 </div>
             {% endfor %}
-
-            <button type="button" class="btn btn-outline-success mx-3" id="createButton"> create </button>
+            <input id="createButton" align="right"  type="image" src="/static/listWorkers/img/add.png">
         </form>
     </div>
 
