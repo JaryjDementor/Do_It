@@ -1,28 +1,71 @@
 body {
-    background-color: #260640;
-}
-h1[id=name_team]{
-    color:red;
+    background-color: black;
 }
 
-h1[id=create] a{
-    font-size: 80%;
-    color: #4AE1F0;
+img[id=logout] {
+    width:50pt;
+    position: absolute;
+    top: 2pt;
+    right: 2pt;
+}
+
+img[id=back]{
+    width: 3%;
+    position: absolute;
+    top: 15pt;
+    left: 15pt;
+}
+
+img[id=add_employee]{
+    width: 5%;
+    position: absolute;
+    top: 3%;
+    left: 35%;
+}
+
+div[id=info_team]{
+    width: 300pt;
+    position: absolute;
+    top: 2%;
+    left: 10%;
+}
+
+h3[id=name_team]{
+    color:white;
+}
+
+img[id=teams2]{
+    width:10%;
+}
+
+h3[id=info_admin]{
+    color:white;
+}
+
+img[id=leader]{
+    width:10%;
+}
+
+div[id=block]{
+    width: 300pt;
+    position: absolute;
+    top: 20%;
+    left: 9%;
+}
+
+div[id=block_employe]{
+    border: solid 1px white;
 }
 
 h3[id=workers]{
-    font-size: 200%;
-    color: #2A0347;
-}
-div[id=block]{
-    width: 200px;
-    background: #ccc;
-    padding: 5px;
-    padding-right: 20px;
-    border: solid 1px black;
-    float: left;
+    color: white;
 }
 
-p a{
-    color: #4F596E;
+a[id=info_employee]{
+    color: #BFEC1B;
+    text-decoration: none;
+}
+
+p[id=username]{
+    color: white;
 }

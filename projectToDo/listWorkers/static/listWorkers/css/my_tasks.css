@@ -23,13 +23,6 @@ img[id=export]{
     left: 85pt;
 }
 
-img[id=delete_employee]{
-    width: 5%;
-    position: absolute;
-    bottom: 5%;
-    right: 5%;
-}
-
 h2[id=taskWorker]{
     color: white;
     position: absolute;
@@ -58,4 +51,11 @@ button[id=delete]{
     right: 1%;
     bottom: 1%;
 
+}
+
+img[id=todolist]{
+    width: 13%;
+    position: absolute;
+    bottom: 5%;
+    right: 5%;
 }

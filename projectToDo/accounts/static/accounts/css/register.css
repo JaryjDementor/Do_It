@@ -12,6 +12,7 @@ img[id=image3] {
 
 
 div form {
+    width: 300pt;
     position: relative;
     top: -28pt;
     left: 50%;
@@ -38,7 +39,7 @@ p img{
 }
 
 input[id=register]{
-    width: 10%;
+    width: 30%;
 }
 
 img[id=logining]{

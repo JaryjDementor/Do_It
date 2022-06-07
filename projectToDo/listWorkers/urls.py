@@ -5,8 +5,6 @@ from .views import (
     TaskList,
     TaskComplete,
     TaskDelete,
-    SortTaskListStatus,
-    SortTaskListDate,
     exportcsv,
     profile_user,
     delete_worker,
@@ -28,16 +26,7 @@ urlpatterns = [
 
     path("<str:id>/completed/", TaskComplete.as_view(), name="task_complete_url"),
     path("<str:id>/delete/", TaskDelete.as_view(), name="task_delete_url"),
-    path(
-        "<int:id_team>/<int:id_worker>/sort-status",
-        SortTaskListStatus.as_view(),
-        name="task_sortstatus_list_url",
-    ),
-    path(
-        "<int:id_team>/<int:id_worker>/sort-date",
-        SortTaskListDate.as_view(),
-        name="task_sortdate_list_url",
-    ),
+
     path("<int:id_worker>/export-tasks", exportcsv, name="export_tasks"),
-    path("<int:id_worker>/delete", delete_worker, name="delete_worker"),
+    path("<int:id_worker>/<int:id_team>/delete", delete_worker, name="delete_worker"),
 ]

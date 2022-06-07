@@ -42,5 +42,13 @@ img[id=teams2]{
 }
 
 a[id=yourteam]{
-    color: white;
+    color: #BFEC1B;
+    text-decoration: none;
+}
+
+img[id=app]{
+    width: 10%;
+    position: absolute;
+    bottom: 5%;
+    right: 5%;
 }

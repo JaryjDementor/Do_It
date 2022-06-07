@@ -6,20 +6,28 @@
 {% endblock %}
 
 {% block content %}
-<h4 id="logout"> <a href="{% url 'logout' %}"> Logout </a> </h4>
-<h1> {{user.id}} </h1>
-    <h5> <a href="{% url 'profile_user' %}"> Back </a></h5>
-    {% for item in name_admin %}
-    <h1 id="info_admin"> Team Leader:  {{item.first_name}}  </h1>
-     {% endfor %}
+
+<a href="{% url 'logout' %}"><img align="right" src="/static/listWorkers/img/logout.png" id="logout">  </a>
+<a href="{% url 'profile_user' %}"> <img id="back" src="/static/listWorkers/img/back2.png"> </a>
+<a href="{% url 'add_an_employee' id_team %}"><img id="add_employee" src="/static/listWorkers/img/add_worker.png"></a>
+
+    <div id="info_team">
     {% for item in nameteam %}
-    <h1 id="name_team"> Team:  {{item.name_team}}, {{item.id_admin}}  </h1>
-     {% endfor %}
-    <h1 align="right" id="create"><a href="{% url 'add_an_employee' id_team  %}">Add new employee</a> </h1>
+        <h3 id="name_team"> <img id="teams2" src="/static/listWorkers/img/teams2.png"> Team:  {{item.name_team}} </h3>
+    {% endfor %}
+
+    {% for item in name_admin %}
+         <h3 id="info_admin"> <img id="leader" src="/static/listWorkers/img/leader.png"> Team Leader:  {{item.first_name}}  </h3>
+    {% endfor %}
+    </div>
+
     <div id="block">
         <h3 id="workers"> Workers: </h3>
         {% for item in db %}
-            <p> <a href="{% url 'task_list_url' item.id_team item.id_worker %}">{{item.first_name}} {{item.last_name}} </a><br> Username-{{item.username}}</b></a></p>
-        {% endfor %}
+            <div id="block_employe">
+            <p> <img id="employee" src="/static/listWorkers/img/employee.png"> <a id="info_employee" href="{% url 'task_list_url' item.id_team item.id_worker %}">{{item.first_name}} {{item.last_name}} <br> <p id="username">Username-{{item.username}}</p></a>
+            </div>
+                {% endfor %}
     </div>
+
 {% endblock %}

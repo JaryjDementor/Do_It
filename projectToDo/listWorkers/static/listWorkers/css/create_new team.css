@@ -28,6 +28,7 @@ input[id=add_team]{
 }
 
 img[id=back]{
+    width: 3%;
     position: absolute;
     top: 15pt;
     left: 15pt;
@@ -36,6 +37,6 @@ img[id=back]{
 img[id=newteam]{
     width: 10%;
     position: absolute;
-    bottom: 20pt;
-    left: 45pt;
+    bottom: 5%;
+    right: 5%;
 }
