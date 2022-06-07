@@ -14,15 +14,15 @@ Register
 <!--<img align="left" id="image" src="static/accounts/img/reg3.png"><br>-->
 <img align="left" id="image3" src="static/accounts/img/regist.png">
 {% load crispy_forms_tags %}
-<!--Register-->
 
 <div class="container py-5" align="left">
 	<form method="POST">
 		{% csrf_token %}
 		<p>{{ register_form|crispy }}<p>
-		<button class="btn btn-primary" type="submit">Register</button>
+<!--		<button class="btn btn-primary" type="submit">Register</button>-->
+		<input align="center" id="register" type="image" src="static/accounts/img/reg3.png">
 	</form>
-	<p class="text-center">If you already have an account, <a href="/login">login</a> instead.</p>
+<!--	<p class="text-center">If you already have an account, <a href="/login">login</a> instead.</p>-->
 </div>
-
+<a id="login" href="login" ><img align="left" id="logining" src="static/accounts/img/login (1).png"></a>
 {% endblock %}

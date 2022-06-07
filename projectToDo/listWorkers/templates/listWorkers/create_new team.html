@@ -2,19 +2,22 @@
 {% load static %}
 
 {% block css_aditional %}
-<link rel="stylesheet" href="{% static 'listWorkers/css/create_new_worker.css'%}">
+<link rel="stylesheet" href="{% static 'listWorkers/css/create_new team.css'%}">
 {% endblock %}
 
 {% block content %}
-<h2>  Create new team </h2>
-<div class="features">
-<form method="post">
+<a href="{% url 'logout' %}"><img align="right" src="/static/listWorkers/img/logout.png" id="logout">  </a>
+<a href="{% url 'profile_user' %}"> <img id="back" src="/static/listWorkers/img/back.png"> </a>
+
+<h2 id="text_create">  Create new team </h2>
+
+<form method="post" id="form_create">
 {% csrf_token %}
     <p>{{form.name_team}}</p><br>
     <spam> {{ error }} </spam>
-    <button class="btn btn-success" type="submit"> Add </button>
+    <input align="right" id="add_team" type="image" src="/static/listWorkers/img/add.png">
 </form>
-</div>
 
+<img align="right" id="newteam" src="/static/listWorkers/img/teams3.png">
 
 {% endblock %}

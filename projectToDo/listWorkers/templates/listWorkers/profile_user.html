@@ -1,4 +1,5 @@
 {% extends 'listWorkers/base.html' %}
+
 {% load static %}
 
 {% block css_aditional %}
@@ -7,13 +8,19 @@
 
 
 {% block content %}
-<h4 id="my_tasks"> <a href="{% url 'my_tasks' user.id %}"> Mytasks </a> </h4>
-<h4 id="logout"> <a href="{% url 'logout' %}"> Logout </a> </h4>
-<h1 align="left" id="teams" > Your teams</h1>
-<h1 align="right" id="create_new_team"><a href="{% url 'create_new_team' id %}"> Create new team </a>  </h1>
-{% for item in teams %}
-    <p><a href="{% url 'list_workers' item.id %}">{{item.name_team}} </a></p>
-{% endfor %}
+
+<a href="{% url 'logout' %}"><img align="right" src="/static/listWorkers/img/logout.png" id="logout">  </a> <br>
+
+<a id="new_teams" href="{% url 'create_new_team' id %}"><img align="right" id="newteam" src="/static/listWorkers/img/teams1.png"></a>
+<a id="mytask" href="{% url 'my_tasks' user.id %}"><img align="right" id="todo1" src="/static/listWorkers/img/todolist1.png"></a>
+
+
+<h5 align="left" id="teams" > Teams: </h5>
+    {% for item in teams %}
+    <p><img id="teams2" src="/static/listWorkers/img/teams2.png"><a id="yourteam" href="{% url 'list_workers' item.id %}">{{item.name_team}} </a></p>
+    {% endfor %}
+
+
 
 
 {% endblock %}
