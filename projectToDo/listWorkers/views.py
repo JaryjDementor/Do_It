@@ -60,6 +60,7 @@ def add_an_employee(request, id_team):
         if form.is_valid():
             order = form.save(commit=False)
             order.id_team = id_team
+            order.id_admin = iduser
             user = User.objects.get(username=order.username)
             order.id_worker = user.id
             order.first_name = user.first_name
