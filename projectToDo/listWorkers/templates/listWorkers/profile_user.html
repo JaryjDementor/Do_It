@@ -10,7 +10,6 @@
 {% block content %}
 
 <a href="{% url 'logout' %}"><img align="right" src="/static/listWorkers/img/logout.png" id="logout">  </a> <br>
-
 <a id="new_teams" href="{% url 'create_new_team' id %}"><img align="right" id="newteam" src="/static/listWorkers/img/team4.png"></a>
 <a id="mytask" href="{% url 'my_tasks' user.id %}"><img align="right" id="todo1" src="/static/listWorkers/img/todolist1.png"></a>
 
@@ -22,6 +21,8 @@
 
 
 
-<img align="right" id="app" src="/static/listWorkers/img/appp.png">
+<!--<img align="right" id="app" src="/static/listWorkers/img/appp.png">-->
+<h4 id="all_employees" > All employees: </h4>
+<a href="{% url 'rest' %}"> <img a src="/static/listWorkers/img/rest.png" id="rest"> </a>
 
 {% endblock %}

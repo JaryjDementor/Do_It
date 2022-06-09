@@ -9,6 +9,20 @@ img[id=logout] {
     right: 5pt;
 }
 
+h4[id=all_employees] {
+    color: white;
+    position: absolute;
+    bottom: 15%;
+    left: 85%;
+}
+
+img[id=rest]{
+    width: 5%;
+    position: absolute;
+    bottom: 5%;
+    right: 3%;
+}
+
 img[id=newteam]{
     width: 5%;
     position: absolute;
