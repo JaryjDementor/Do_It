@@ -69,10 +69,6 @@ def add_an_employee(request, id_team):
     form = WorkersForm()
     return render(request, "listWorkers/add_worker.html", {"form": form, 'id_team': id_team})
 
-def my_tasks(request, iduser):
-    iduser = request.user.id
-    check_log(iduser)
-    tasks = Employees_Task_List.objects.filter(id_worker=iduser)
 
 class MyTasks(View):
     def get(self, request, iduser):
@@ -100,15 +96,6 @@ class MyTasks(View):
             return JsonResponse({"task": model_to_dict(new_task)}, status=200)
         else:
             return redirect("my_tasks", iduser)
-
-class MyTasksComplete(View):
-    def post(self, request, id):
-        task = Employees_Task_List.objects.get(id=id)
-        task.status = "Completed"
-        task.save()
-        task.completed = True
-        return JsonResponse({"task": model_to_dict(task)}, status=200)
-
 
 
 class TaskList(View):
@@ -138,9 +125,6 @@ class TaskList(View):
             return JsonResponse({"task": model_to_dict(new_task)}, status=200)
         else:
             return redirect("task_list_url")
-
-
-
 
 
 class TaskComplete(View):
@@ -178,6 +162,10 @@ def exportcsv(request, id_worker):
     return response
 
 def delete_worker(request, id_worker, id_team):
-    a=Employees_Task_List.objects.filter(id_worker=id_worker, id_team=id_team).delete()
-    b=Workers.objects.filter(id_worker=id_worker, id_team=id_team).delete()
+    del_em_task_list = Employees_Task_List.objects.filter(id_worker=id_worker, id_team=id_team).delete()
+    telete_from_workers = Workers.objects.filter(id_worker=id_worker, id_team=id_team).delete()
     return redirect('list_workers', id_team)
+
+def delete_team(request, id_team):
+    del_from_team_list = TeamsList.objects.filter(id=id_team).delete()
+    return redirect('profile_user')

@@ -21,6 +21,7 @@ img[id=export]{
     position: absolute;
     top: 10pt;
     left: 85pt;
+    border: solid 1px white;
 }
 
 img[id=delete_employee]{
@@ -28,6 +29,7 @@ img[id=delete_employee]{
     position: absolute;
     bottom: 5%;
     right: 5%;
+    border: solid 1px white;
 }
 
 h2[id=taskWorker]{

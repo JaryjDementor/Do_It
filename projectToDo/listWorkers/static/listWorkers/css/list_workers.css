@@ -21,6 +21,7 @@ img[id=add_employee]{
     position: absolute;
     top: 3%;
     left: 35%;
+    border: solid 1px white;
 }
 
 div[id=info_team]{
@@ -68,4 +69,12 @@ a[id=info_employee]{
 
 p[id=username]{
     color: white;
+}
+
+img[id=del_team]{
+    width: 5%;
+    position: absolute;
+    bottom: 5%;
+    right: 5%;
+    border: solid 1px white;
 }
