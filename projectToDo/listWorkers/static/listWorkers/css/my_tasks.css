@@ -21,6 +21,7 @@ img[id=export]{
     position: absolute;
     top: 10pt;
     left: 85pt;
+    border: solid 1px white;
 }
 
 h2[id=taskWorker]{
