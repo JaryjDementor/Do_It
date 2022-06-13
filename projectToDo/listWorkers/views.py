@@ -8,20 +8,19 @@ from .models import Workers, Employees_Task_List, TeamsList
 from django.http import JsonResponse, HttpResponse
 import csv
 
-def check_log(id_user):
+def check_log(id_user): #test
     if id_user:
         pass
     else:
         raise PermissionDenied()
 
-def profile_user(request):
+def profile_user(request): #test
     iduser = request.user.id
     check_log(iduser)
     teams = TeamsList.objects.filter(id_admin=iduser)
     return render(request, "listWorkers/profile_user.html", {'teams':teams, 'id': iduser})
 
-def create_new_team(request, iduser):
-    # id_user = request.user.id
+def create_new_team(request, iduser): #test
     iduser = request.user.id
     check_log(iduser)
     if request.method == "POST":
@@ -35,19 +34,16 @@ def create_new_team(request, iduser):
     return render(request, "listWorkers/create_new team.html", {"form": form})
 
 
-def list_workers(request, id_team):
+def list_workers(request, id_team): #test
     iduser = request.user.id
     check_log(iduser)
     nameteam = TeamsList.objects.filter(id=id_team)
-    # info_admin = User.objects.filter(id=nameteam.id_admin)
     info_admin='a'
     for i in nameteam:
         info_admin = i.id_admin
     name_admin = User.objects.filter(id=info_admin)
     db = Workers.objects.filter(id_team=id_team)
     a=[]
-
-    # info_employee = User.objects.filter(id=db.id_worker)
     data = {"db": db, 'a': a, 'id_team': id_team, 'nameteam': nameteam, 'name_admin': name_admin}
     return render(request, "listWorkers/list_workers.html", context=data)
 
@@ -167,6 +163,6 @@ def delete_worker(request, id_worker, id_team):
     telete_from_workers = Workers.objects.filter(id_worker=id_worker, id_team=id_team).delete()
     return redirect('list_workers', id_team)
 
-def delete_team(request, id_team):
+def delete_team(request, id_team): #test
     del_from_team_list = TeamsList.objects.filter(id=id_team).delete()
     return redirect('profile_user')
