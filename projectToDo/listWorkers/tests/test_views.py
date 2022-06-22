@@ -151,3 +151,11 @@ class ViewListWorkersTestCase(TestCase):
         self.assertEqual(str(task_employee), '<QuerySet [<Employees_Task_List:  Create new Django project. Not complete django 2022-06-23 00:00:00+00:00>, <Employees_Task_List:  Create task 2 Not complete Django 2022-06-29 00:00:00+00:00>]>')
         self.assertEqual(status.HTTP_200_OK, response_post.status_code)
         self.assertEqual(status.HTTP_200_OK, response_get.status_code)
+
+    def test_exportcsv(self):
+        c = Client()
+        user = authenticate(username="TestUser", password="12345678Pas")
+        c.force_login(user)
+        response = c.get("/tasks/1/export-tasks")
+
+        self.assertEqual(status.HTTP_200_OK, response.status_code)
