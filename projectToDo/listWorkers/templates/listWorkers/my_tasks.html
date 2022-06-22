@@ -28,7 +28,7 @@
         {% for task in tasks %}
             <div class="card mb-1" id="taskCard" data-id="{{ task.id}}" style="{% if task.completed %} text-decoration: line-through {% endif %}">
                 <div class="card-body">
-                    <p>Description: {{ task.description }}<br>Status: {{task.status}}<br>Categories: {{ task.categories }}<br>Date of completion: {{ task.date_of_completion }}<br></p>
+                    <p>Description: {{ task.description }}<br>Status: {{task.status}}<br>Categories: {{ task.categories }}<br>Date of completion: {{ task.date_of_completion }}<br> </p>
 
                     {% if task.id_creator == user.id %}
                         <button id="delete" type="button" class="close float-right" data-id="{{ task.id }}">

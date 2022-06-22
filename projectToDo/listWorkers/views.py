@@ -47,27 +47,28 @@ def list_workers(request, id_team): #test
     data = {"db": db, 'a': a, 'id_team': id_team, 'nameteam': nameteam, 'name_admin': name_admin}
     return render(request, "listWorkers/list_workers.html", context=data)
 
-def add_an_employee(request, id_team):
+def add_an_employee(request, id_team): #test
     iduser = request.user.id
     check_log(iduser)
-    bd = TeamsList.objects.filter(id=id_team)
     if request.method == "POST":
         form = WorkersForm(request.POST)
         if form.is_valid():
             order = form.save(commit=False)
-            order.id_team = id_team
-            order.id_admin = iduser
-            user = User.objects.get(username=order.username)
-            order.id_worker = user.id
-            order.first_name = user.first_name
-            order.last_name = user.last_name
-            order.save()
-            return redirect("list_workers", id_team)
+            user = User.objects.filter(username=order.username)
+            if user:
+                for i in user:
+                    order.id_worker = i.id
+                    order.first_name = i.first_name
+                    order.last_name = i.last_name
+                order.id_team = id_team
+                order.id_admin = iduser
+                order.save()
+                return redirect("list_workers", id_team)
     form = WorkersForm()
     return render(request, "listWorkers/add_worker.html", {"form": form, 'id_team': id_team})
 
 
-class MyTasks(View):
+class MyTasks(View): #test
     def get(self, request, iduser):
         id_user = request.user.id
         check_log(id_user)
@@ -95,7 +96,7 @@ class MyTasks(View):
             return redirect("my_tasks", iduser)
 
 
-class TaskList(View):
+class TaskList(View): #test
     def get(self, request, id_team, id_worker):
         iduser = request.user.id
         check_log(iduser)
@@ -124,7 +125,7 @@ class TaskList(View):
             return redirect("task_list_url")
 
 
-class TaskComplete(View):
+class TaskComplete(View): #test
     def post(self, request, id):
         iduser = request.user.id
         check_log(iduser)
@@ -135,7 +136,7 @@ class TaskComplete(View):
         return JsonResponse({"task": model_to_dict(task)}, status=200)
 
 
-class TaskDelete(View):
+class TaskDelete(View): #test
     def post(self, request, id):
         iduser = request.user.id
         check_log(iduser)
@@ -158,7 +159,7 @@ def exportcsv(request, id_worker):
         writer.writerow(task)
     return response
 
-def delete_worker(request, id_worker, id_team):
+def delete_worker(request, id_worker, id_team): #test
     del_em_task_list = Employees_Task_List.objects.filter(id_worker=id_worker, id_team=id_team).delete()
     telete_from_workers = Workers.objects.filter(id_worker=id_worker, id_team=id_team).delete()
     return redirect('list_workers', id_team)

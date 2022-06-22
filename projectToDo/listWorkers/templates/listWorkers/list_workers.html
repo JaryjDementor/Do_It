@@ -24,7 +24,7 @@
         <h3 id="workers"> Workers: </h3>
         {% for item in db %}
             <div id="block_employe">
-            <p> <img id="employee" src="/static/listWorkers/img/employee.png"> <a id="info_employee" href="{% url 'task_list_url' item.id_team item.id_worker %}">{{item.first_name}} {{item.last_name}} <br> <p id="username">Username-{{item.username}}</p></a>
+            <p> <img id="employee" src="/static/listWorkers/img/employee.png"> <a id="info_employee" href="{% url 'task_list_url' item.id_team item.id_worker %}">{{item.first_name}} {{item.last_name}} <br> <p id="username">Username: {{item.username}}</p></a>
             </div>
                 {% endfor %}
     </div>
