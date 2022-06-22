@@ -96,129 +96,58 @@ class ViewListWorkersTestCase(TestCase):
         self.assertEqual(employee.id, 2)
         self.assertEqual(employee.first_name, "Ron")
 
-        response2 = c.post("/tasks/2/1/delete")
+        response2 = c.post("/tasks/3/1/delete")
         employee_delete = Workers.objects.filter(username='TestUser_2')
         self.assertEqual(list(employee_delete), [])
         self.assertEqual(status.HTTP_302_FOUND, response2.status_code)
-#
-#     def test_Notebook_name_Update(self):
-#         notebook = Notebook.objects.get(id=1)
-#         c = Client()
-#         user = authenticate(username="TestUser", password="12345678Pas")
-#         c.force_login(user)
-#         response = c.post(
-#             "/accounts/notebook/1/update",
-#             {"name_notebook": "TestNotebookEdit", "iduser": "1"},
-#         )
-#         edit_notebook = Notebook.objects.get(id=1)
-#         self.assertEqual(notebook.name_notebook, "TestNotebook")
-#         self.assertEqual(edit_notebook.name_notebook, "TestNotebookEdit")
-#         self.assertEqual(status.HTTP_302_FOUND, response.status_code)
-#
-#
-# class ViewNoteTestCase(TestCase):
-#     def setUp(self):
-#         test_user = User.objects.create_user(
-#             username="TestUser", password="12345678Pas", email="test@gmail.com"
-#         )
-#         test_user.save()
-#         test_user_2 = User.objects.create_user(
-#             username="TestUser_2", password="12345678Pas_2", email="test_2@gmail.com"
-#         )
-#         test_user_2.save()
-#
-#         test_notebook = Notebook.objects.create(
-#             name_notebook="TestNotebook", iduser="1"
-#         )
-#         test_notebook.save()
-#         test_notebook_2 = Notebook.objects.create(
-#             name_notebook="TestNotebook_2", iduser="2"
-#         )
-#         test_notebook_2.save()
-#
-#         test_note = Note.objects.create(
-#             title="TestTitle",
-#             text="Hallo world!!!",
-#             data="2022-04-27 15:09:40.669876+00:00",
-#             iduser="1",
-#             id_notebook="2",
-#         )
-#         test_note.save()
-#         test_note_2 = Note.objects.create(
-#             title="TestTitle_2",
-#             text="Peace",
-#             data="2022-04-27 15:08:45.145466+00:00",
-#             iduser="3",
-#             id_notebook="4",
-#         )
-#         test_note_2.save()
-#
-#     def test_viewes_notebook(self):
-#         c = Client()
-#         user = authenticate(username="TestUser", password="12345678Pas")
-#         c.force_login(user)
-#         response = c.post("/accounts/notebook/2")
-#         response_2 = c.post("/accounts/notebook/1")
-#         note = Note.objects.get(iduser=1)
-#         self.assertEqual(status.HTTP_403_FORBIDDEN, response.status_code)
-#         self.assertEqual(status.HTTP_200_OK, response_2.status_code)
-#         self.assertEqual("TestTitle", note.title)
-#
-#     def test_Note_Update(self):
-#         c = Client()
-#         user = authenticate(username="TestUser", password="12345678Pas")
-#         c.force_login(user)
-#         note = Note.objects.get(iduser=1)
-#         response = c.post(
-#             "/accounts/view_note/2/1/update",
-#             {
-#                 "title": "TestTitleEdit",
-#                 "text": "Hallo world!!! Edit",
-#                 "data": "2022-04-27 15:09:40.669876+00:00",
-#                 "iduser": "1",
-#                 "id_notebook": "2",
-#             },
-#         )
-#         note_edit = Note.objects.get(iduser=1)
-#         self.assertEqual([note.title, note.text], ["TestTitle", "Hallo world!!!"])
-#         self.assertEqual(
-#             [note_edit.title, note_edit.text], ["TestTitleEdit", "Hallo world!!! Edit"]
-#         )
-#         self.assertEqual(status.HTTP_302_FOUND, response.status_code)
-#
-#     def test_create_delete_note(self):
-#         c = Client()
-#         user = authenticate(username="TestUser", password="12345678Pas")
-#         c.force_login(user)
-#         response = c.post(
-#             "/accounts/create/1",
-#             {
-#                 "title": "CreateTitle",
-#                 "text": "Create Hallo world!!!",
-#                 "data": "2022-04-27 15:11:40.669876+00:00",
-#                 "iduser": "1",
-#                 "id_notebook": "2",
-#             },
-#         )
-#         note_create = Note.objects.get(id=3)
-#         self.assertEqual(
-#             [note_create.title, note_create.text],
-#             ["CreateTitle", "Create Hallo world!!!"],
-#         )
-#         self.assertEqual(status.HTTP_302_FOUND, response.status_code)
-#
-#         response2 = c.post("/accounts/delete_note/2/3")
-#         note_delete = Note.objects.filter(id=3)
-#         self.assertEqual(status.HTTP_302_FOUND, response2.status_code)
-#         self.assertEqual([], list(note_delete))
-#
-#     def test_view_your_note_check_log(self):
-#         c = Client()
-#         user = authenticate(username="TestUser", password="12345678Pas")
-#         c.force_login(user)
-#         response = c.get("/accounts/view_note/2/1")
-#         response_2 = c.get("/accounts/view_note/4/2")
-#         note = Note.objects.get(id=1)
-#         self.assertEqual(status.HTTP_200_OK, response.status_code)
-#         self.assertEqual(["TestTitle", "Hallo world!!!"], [note.title, note.text])
-#         self.assertEqual(status.HTTP_403_FORBIDDEN, response_2.status_code)
+
+    def test_TaskList(self):
+        c = Client()
+        user = authenticate(username="TestAdmin", password="12345678Pas")
+        c.force_login(user)
+        response_post = c.post(
+            "/tasks/1/1",
+            {"description": "Create task 2", "categories": "Django", "date_of_completion": "2022-06-29 00:00:00"},
+        )
+        tasks_create = Employees_Task_List.objects.filter(id=2)
+        response_get = c.get("/tasks/1/1", )
+        tasks_employee = Employees_Task_List.objects.filter(id_worker=1)
+
+        self.assertEqual(str(tasks_create) ,'<QuerySet [<Employees_Task_List:  Create task 2 Not complete Django 2022-06-29 00:00:00+00:00>]>')
+        self.assertEqual(status.HTTP_200_OK, response_post.status_code)
+        self.assertEqual(str(tasks_employee), '<QuerySet [<Employees_Task_List:  Create new Django project. Not complete django 2022-06-23 00:00:00+00:00>, <Employees_Task_List:  Create task 2 Not complete Django 2022-06-29 00:00:00+00:00>]>')
+        self.assertEqual(status.HTTP_200_OK, response_get.status_code)
+
+    def test_TaskComplete(self):
+        c = Client()
+        user = authenticate(username="TestUser", password="12345678Pas")
+        c.force_login(user)
+        response_post = c.post("/tasks/1/completed/")
+        task_complete = Employees_Task_List.objects.filter(id=1)
+        for i in task_complete:
+            status_task = i.status
+
+        self.assertEqual(status_task, 'Completed')
+        self.assertEqual(status.HTTP_200_OK, response_post.status_code)
+
+    def test_TaskDelete(self):
+        c = Client()
+        user = authenticate(username="TestUser", password="12345678Pas")
+        c.force_login(user)
+        response_post = c.post("/tasks/1/delete/")
+        task_delete = Employees_Task_List.objects.filter(id=1)
+
+        self.assertEqual(str(task_delete), '<QuerySet []>')
+        self.assertEqual(status.HTTP_200_OK, response_post.status_code)
+
+    def test_MyTasks(self):
+        c = Client()
+        user = authenticate(username="TestUser", password="12345678Pas")
+        c.force_login(user)
+        response_post = c.post("/tasks/my-tasks/1", {"description": "Create task 2", "categories": "Django", "date_of_completion": "2022-06-29 00:00:00"})
+        response_get = c.get("/tasks/my-tasks/1")
+        task_employee = Employees_Task_List.objects.filter(id_worker=1)
+
+        self.assertEqual(str(task_employee), '<QuerySet [<Employees_Task_List:  Create new Django project. Not complete django 2022-06-23 00:00:00+00:00>, <Employees_Task_List:  Create task 2 Not complete Django 2022-06-29 00:00:00+00:00>]>')
+        self.assertEqual(status.HTTP_200_OK, response_post.status_code)
+        self.assertEqual(status.HTTP_200_OK, response_get.status_code)
