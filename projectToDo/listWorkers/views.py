@@ -8,17 +8,22 @@ from .models import Workers, Employees_Task_List, TeamsList
 from django.http import JsonResponse, HttpResponse
 import csv
 
+
 def check_log(id_user):
     if id_user:
         pass
     else:
         raise PermissionDenied()
 
+
 def profile_user(request):
     iduser = request.user.id
     check_log(iduser)
     teams = TeamsList.objects.filter(id_admin=iduser)
-    return render(request, "listWorkers/profile_user.html", {'teams':teams, 'id': iduser})
+    return render(
+        request, "listWorkers/profile_user.html", {"teams": teams, "id": iduser}
+    )
+
 
 def create_new_team(request, iduser):
     iduser = request.user.id
@@ -38,14 +43,19 @@ def list_workers(request, id_team):
     iduser = request.user.id
     check_log(iduser)
     nameteam = TeamsList.objects.filter(id=id_team)
-    info_admin='a'
+    info_admin = "a"
     for i in nameteam:
         info_admin = i.id_admin
     name_admin = User.objects.filter(id=info_admin)
     db = Workers.objects.filter(id_team=id_team)
-    a=[]
-    data = {"db": db, 'a': a, 'id_team': id_team, 'nameteam': nameteam, 'name_admin': name_admin}
+    data = {
+        "db": db,
+        "id_team": id_team,
+        "nameteam": nameteam,
+        "name_admin": name_admin,
+    }
     return render(request, "listWorkers/list_workers.html", context=data)
+
 
 def add_an_employee(request, id_team):
     iduser = request.user.id
@@ -65,7 +75,9 @@ def add_an_employee(request, id_team):
                 order.save()
                 return redirect("list_workers", id_team)
     form = WorkersForm()
-    return render(request, "listWorkers/add_worker.html", {"form": form, 'id_team': id_team})
+    return render(
+        request, "listWorkers/add_worker.html", {"form": form, "id_team": id_team}
+    )
 
 
 class MyTasks(View):
@@ -79,6 +91,7 @@ class MyTasks(View):
             "listWorkers/my_tasks.html",
             {"form": form, "tasks": tasks, "id_worker": iduser},
         )
+
     def post(self, request, iduser):
         id_user = request.user.id
         check_log(id_user)
@@ -145,7 +158,6 @@ class TaskDelete(View):
         return JsonResponse({"result": "ok"}, status=200)
 
 
-
 def exportcsv(request, id_worker):
     employee_tasks = Employees_Task_List.objects.filter(id_worker=id_worker)
     response = HttpResponse("workersTask/csv")
@@ -159,11 +171,17 @@ def exportcsv(request, id_worker):
         writer.writerow(task)
     return response
 
-def delete_worker(request, id_worker, id_team):
-    del_em_task_list = Employees_Task_List.objects.filter(id_worker=id_worker, id_team=id_team).delete()
-    telete_from_workers = Workers.objects.filter(id_worker=id_worker, id_team=id_team).delete()
-    return redirect('list_workers', id_team)
 
-def delete_team(request, id_team): #test
-    del_from_team_list = TeamsList.objects.filter(id=id_team).delete()
-    return redirect('profile_user')
+def delete_worker(request, id_worker, id_team):
+    Employees_Task_List.objects.filter(
+        id_worker=id_worker, id_team=id_team
+    ).delete()
+    Workers.objects.filter(
+        id_worker=id_worker, id_team=id_team
+    ).delete()
+    return redirect("list_workers", id_team)
+
+
+def delete_team(request, id_team):
+    TeamsList.objects.filter(id=id_team).delete()
+    return redirect("profile_user")

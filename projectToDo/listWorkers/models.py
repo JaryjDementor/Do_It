@@ -8,11 +8,10 @@ class Workers(Model):
     username = CharField("username", max_length=1000, null=False)
     first_name = CharField("first_name", max_length=1000, null=False)
     last_name = CharField("last_name", max_length=1000, null=False)
+
     class Meta:
         verbose_name = "Workers"
         verbose_name_plural = "Workers"
-
-
 
 
 class Employees_Task_List(Model):
@@ -31,6 +30,7 @@ class Employees_Task_List(Model):
 
     def __str__(self):
         return f" {self.description} {self.status} {self.categories} {self.date_of_completion}"
+
 
 class TeamsList(Model):
     id_admin = IntegerField("id_admin", max_length=1000, null=False)
