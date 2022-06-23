@@ -30,16 +30,23 @@
 
 ![](projectToDo/static/img_for_readme/create_team.png)
 
-- join the team of your choice:
-
-![](projectToDo/static/img_for_readme/teams.png)
+![](projectToDo/static/img_for_readme/create_new_team.png)
 
 - view the tasks left by the user manager:
 
 ![](projectToDo/static/img_for_readme/tasks.png)
 
+![](projectToDo/static/img_for_readme/mytasks.png)
+
 - open the rest api and see all employees and their tasks for today:
 
 ![](projectToDo/static/img_for_readme/rest.png)
+
+![](projectToDo/static/img_for_readme/restapi.png)
+
+- join the team of your choice:
+
+![](projectToDo/static/img_for_readme/teams.png)
+
 
 
