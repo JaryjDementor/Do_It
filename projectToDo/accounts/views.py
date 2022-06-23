@@ -3,11 +3,13 @@ from .forms import NewUserForm
 from django.contrib.auth import login, authenticate, logout
 from django.contrib import messages
 from django.contrib.auth.forms import AuthenticationForm
-from django.http import  HttpResponseBadRequest
+from django.http import HttpResponseBadRequest
 from django.contrib.auth.models import User
 
+
 def firstpage(request):
-    return render(request, 'accounts/first_page.html')
+    return render(request, "accounts/first_page.html")
+
 
 def form_new_user(request):
     form = NewUserForm()
@@ -66,4 +68,3 @@ def login_request(request):
 def logout_request(request):
     logout(request)
     return redirect("firstpage")
-
