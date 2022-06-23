@@ -8,19 +8,19 @@ from .models import Workers, Employees_Task_List, TeamsList
 from django.http import JsonResponse, HttpResponse
 import csv
 
-def check_log(id_user): #test
+def check_log(id_user):
     if id_user:
         pass
     else:
         raise PermissionDenied()
 
-def profile_user(request): #test
+def profile_user(request):
     iduser = request.user.id
     check_log(iduser)
     teams = TeamsList.objects.filter(id_admin=iduser)
     return render(request, "listWorkers/profile_user.html", {'teams':teams, 'id': iduser})
 
-def create_new_team(request, iduser): #test
+def create_new_team(request, iduser):
     iduser = request.user.id
     check_log(iduser)
     if request.method == "POST":
@@ -34,7 +34,7 @@ def create_new_team(request, iduser): #test
     return render(request, "listWorkers/create_new team.html", {"form": form})
 
 
-def list_workers(request, id_team): #test
+def list_workers(request, id_team):
     iduser = request.user.id
     check_log(iduser)
     nameteam = TeamsList.objects.filter(id=id_team)
@@ -47,7 +47,7 @@ def list_workers(request, id_team): #test
     data = {"db": db, 'a': a, 'id_team': id_team, 'nameteam': nameteam, 'name_admin': name_admin}
     return render(request, "listWorkers/list_workers.html", context=data)
 
-def add_an_employee(request, id_team): #test
+def add_an_employee(request, id_team):
     iduser = request.user.id
     check_log(iduser)
     if request.method == "POST":
@@ -68,7 +68,7 @@ def add_an_employee(request, id_team): #test
     return render(request, "listWorkers/add_worker.html", {"form": form, 'id_team': id_team})
 
 
-class MyTasks(View): #test
+class MyTasks(View):
     def get(self, request, iduser):
         id_user = request.user.id
         check_log(id_user)
@@ -96,7 +96,7 @@ class MyTasks(View): #test
             return redirect("my_tasks", iduser)
 
 
-class TaskList(View): #test
+class TaskList(View):
     def get(self, request, id_team, id_worker):
         iduser = request.user.id
         check_log(iduser)
@@ -125,7 +125,7 @@ class TaskList(View): #test
             return redirect("task_list_url")
 
 
-class TaskComplete(View): #test
+class TaskComplete(View):
     def post(self, request, id):
         iduser = request.user.id
         check_log(iduser)
@@ -136,7 +136,7 @@ class TaskComplete(View): #test
         return JsonResponse({"task": model_to_dict(task)}, status=200)
 
 
-class TaskDelete(View): #test
+class TaskDelete(View):
     def post(self, request, id):
         iduser = request.user.id
         check_log(iduser)
@@ -146,7 +146,7 @@ class TaskDelete(View): #test
 
 
 
-def exportcsv(request, id_worker): #test
+def exportcsv(request, id_worker):
     employee_tasks = Employees_Task_List.objects.filter(id_worker=id_worker)
     response = HttpResponse("workersTask/csv")
     response["Content-Disposition"] = "attachment; filename=tasksWorker.csv"
@@ -159,7 +159,7 @@ def exportcsv(request, id_worker): #test
         writer.writerow(task)
     return response
 
-def delete_worker(request, id_worker, id_team): #test
+def delete_worker(request, id_worker, id_team):
     del_em_task_list = Employees_Task_List.objects.filter(id_worker=id_worker, id_team=id_team).delete()
     telete_from_workers = Workers.objects.filter(id_worker=id_worker, id_team=id_team).delete()
     return redirect('list_workers', id_team)
