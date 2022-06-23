@@ -1,12 +1,18 @@
-from datetime import datetime
 from django.test import TestCase
-from ..models import Workers, Employees_Task_List, TeamsList
+from ..models import Workers
 
 
 class NotebookTestCase(TestCase):
     @classmethod
     def setUpTestData(cls):
-        notebook = Workers.objects.create(id_team="1", id_admin="2", id_worker="3", username="UserA", first_name='Tom', last_name='Rich')
+        notebook = Workers.objects.create(
+            id_team="1",
+            id_admin="2",
+            id_worker="3",
+            username="UserA",
+            first_name="Tom",
+            last_name="Rich",
+        )
 
     def test_id_team_label(self):
         notebook = Workers.objects.get(id=1)
@@ -37,4 +43,3 @@ class NotebookTestCase(TestCase):
         notebook = Workers.objects.get(id=1)
         field_label = notebook._meta.get_field("last_name").verbose_name
         self.assertEquals(field_label, "last_name")
-

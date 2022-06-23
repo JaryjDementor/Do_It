@@ -5,8 +5,8 @@ from ..forms import NewUserForm
 class FormTestCase(TestCase):
     def test_NewUserForm(self):
         form_data = {
-            "first_name": 'Tom',
-            "last_name": 'Rich',
+            "first_name": "Tom",
+            "last_name": "Rich",
             "username": "Test1",
             "email": "test1@gmail.com",
             "password1": "12345678Pas",

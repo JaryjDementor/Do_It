@@ -22,8 +22,8 @@ class ViewTestCase(TestCase):
         response = c.post(
             "/register",
             {
-                "first_name": 'Tom',
-                "last_name": 'Rich',
+                "first_name": "Tom",
+                "last_name": "Rich",
                 "username": "TestUser",
                 "email": "example",
                 "password": "12345678Pas",
@@ -37,8 +37,8 @@ class ViewTestCase(TestCase):
         response = c.post(
             "/register",
             {
-                "first_name": 'Tom',
-                "last_name": 'Rich',
+                "first_name": "Tom",
+                "last_name": "Rich",
                 "username": "TestUser",
                 "email": "test@gmail.com",
                 "password": "12345678Pas",
@@ -52,8 +52,8 @@ class ViewTestCase(TestCase):
         response = c.post(
             "/register",
             {
-                "first_name": 'Tom',
-                "last_name": 'Rich',
+                "first_name": "Tom",
+                "last_name": "Rich",
                 "username": "TestUser1",
                 "email": "test1@gmail.com",
                 "password1": "12345678Pas",

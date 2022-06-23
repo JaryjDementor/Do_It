@@ -5,6 +5,8 @@
 <link rel="stylesheet" href="{% static 'listWorkers/css/detail_worker_create_task.css'%}">
 {% endblock %}
 
+{% block title %} Create task {% endblock %}
+
 {% block content %}
 <a href="{% url 'logout' %}"><img align="right" src="/static/listWorkers/img/logout.png" id="logout">  </a>
 <a href="{% url 'list_workers' id_team %}"> <img id="back" src="/static/listWorkers/img/back2.png"> </a>
