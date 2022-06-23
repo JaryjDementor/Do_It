@@ -1,67 +1,63 @@
 body {
-    background-color: #260640;
+    background-color: black;
 }
 
-h1 a[id='back']{
-    color: #38EE0C;
-    font-size: 40%;
-    position: relative;
-    top: 0pt;
-    left: 0pt;
+img[id=logout] {
+    width:50pt;
+    position: absolute;
+    top: 2pt;
+    right: 2pt;
 }
 
-h1 a[id='status']{
-    color: #38EE0C;
-    font-size: 40%;
-    position: relative;
-    top: 0pt;
-    left: 0pt;
-}
-h1 a[id='date'] {
-    color: #38EE0C;
-    font-size: 40%;
-    position: relative;
-    top: -42pt;
-    left: 105pt;
+img[id=back]{
+    width: 3%;
+    position: absolute;
+    top: 15pt;
+    left: 15pt;
 }
 
-h1 a[id='export'] {
-    color: #38EE0C;
-    font-size: 40%;
-    position: relative;
-    top: -84pt;
-    left: 200pt;
+img[id=export]{
+    width: 5%;
+    position: absolute;
+    top: 10pt;
+    left: 85pt;
+    border: solid 1px white;
 }
 
-h2[id='taskWorker'] {
-    font-size: 150%;
-    position: relative;
-    top: -50pt;
-    left: 0pt;
-    color: #4AE1F0;
-}
-h3[id='newTask'] {
-    font-size: 150%;
-    color: #4AE1F0;
-    position: relative;
-    top: -76pt;
-    left: 0pt;
+img[id=delete_employee]{
+    width: 5%;
+    position: absolute;
+    bottom: 5%;
+    right: 5%;
+    border: solid 1px white;
 }
 
-div form[id=createNewTaskForm] {
-    margin-right: 60pt;
-    margin-top: -100pt;
-    max-width: 500px;
-    font-size: 100%;
-    position: relative;
-    top: 0pt;
-    left: 400pt;
-}
-button[id=createButton]{
-    background-color: #06751A;
-    color: black;
+h2[id=taskWorker]{
+    color: white;
+    position: absolute;
+    top: 15%;
 }
 
-div[id=taskCard]{
-    top: -300pt;
+div[id=create_task]{
+    width: 500pt;
+    position: absolute;
+    top: 15%;
+    right:20pt;
+}
+
+div[id=taskList]{
+    width: 300pt;
+    height: 100pt;
+    position: relative;
+    top: 100pt;
+    left:20pt;
+}
+
+button[id=delete]{
+    color:white;
+    background: red;
+    position: absolute;
+    right: 1%;
+    bottom: 1%;
+
 }
