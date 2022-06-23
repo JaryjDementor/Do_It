@@ -27,12 +27,19 @@
 
 ### On this site the user can:
 - go to the create new team page: 
+
 ![](projectToDo/static/img_for_readme/create_team.png)
+
 - join the team of your choice:
+
 ![](projectToDo/static/img_for_readme/teams.png)
+
 - view the tasks left by the user manager:
+
 ![](projectToDo/static/img_for_readme/tasks.png)
+
 - open the rest api and see all employees and their tasks for today:
+
 ![](projectToDo/static/img_for_readme/rest.png)
 
 
