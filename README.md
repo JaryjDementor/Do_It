@@ -7,7 +7,7 @@
 - 'python -m venv .venv'
 - 'source .venv/bin/activate'
 - 'pip install -r requirements.txt'
-- 'python runner.py'
+- 'python manage.py runserver'
 
 ## About project
 
