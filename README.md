@@ -74,6 +74,5 @@
 
 ![](projectToDo/static/img_for_readme/logout.png)
 
-
 ## Thank you for your time.
 
