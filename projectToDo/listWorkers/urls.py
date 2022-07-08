@@ -12,14 +12,21 @@ from .views import (
     add_an_employee,
     MyTasks,
     delete_team,
+    ProfileUser,
 )
 
 urlpatterns = [
-    path("", profile_user, name="profile_user"),
+    path("", ProfileUser.as_view(), name="profile_user"),
     path("create-new-team/<int:iduser>", create_new_team, name="create_new_team"),
+
     path("list-workers/<int:id_team>", list_workers, name="list_workers"),
+
     path("add-an-employee/<int:id_team>", add_an_employee, name="add_an_employee"),
+
+
     path("my-tasks/<int:iduser>", MyTasks.as_view(), name="my_tasks"),
+
+
     path(
         "my-tasks/<str:id>/completed/", TaskComplete.as_view(), name="my_tasks_complete"
     ),

@@ -26,5 +26,20 @@
 <h4 id="all_employees" > All employees: </h4>
 <a href="{% url 'rest' %}"> <img a src="/static/listWorkers/img/rest.png" id="rest"> </a>
 
-<img align="right" id="todolist" src="/static/listWorkers/img/todolist.png">
+<!--<img align="right" id="todolist" src="/static/listWorkers/img/todolist.png">-->
+
+
+    <div class="col-8 mt-5" id="create_team">
+        <form class="form-inline justify-content-centr" id="createNewTeam" method="post" data-url="{% url 'n_profile_user' user.id%}">
+            {% csrf_token %}
+            {% for field in form %}
+                <div class="mx-3">
+                    {{ field }}
+                </div>
+            {% endfor %}
+            <input id="createButtonteam" align="right"  type="image" src="/static/listWorkers/img/add.png">
+        </form>
+    </div>
+
+
 {% endblock %}

@@ -16,6 +16,16 @@ def check_log(id_user):
         raise PermissionDenied()
 
 
+class ProfileUser(View):
+    def get(self, request):
+        iduser = request.user.id
+        check_log(iduser)
+        teams = TeamsList.objects.filter(id_admin=iduser)
+        return render(
+            request, "listWorkers/profile_user.html", {"teams": teams, "id": iduser}
+        )
+
+
 def profile_user(request):
     iduser = request.user.id
     check_log(iduser)
