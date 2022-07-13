@@ -1,17 +1,19 @@
 from django.urls import path
-
+from .viewses.views_workers_tasks import TaskList
+from .viewses.views_team import list_workers, add_an_employee, delete_team
+from .viewses.views_profile_user import profile_user, create_new_team, MyTasks
 from .views import (
-    list_workers,
-    TaskList,
+    # list_workers,
+    # TaskList,
     TaskComplete,
     TaskDelete,
     exportcsv,
-    profile_user,
+    # profile_user,
     delete_worker,
-    create_new_team,
-    add_an_employee,
-    MyTasks,
-    delete_team,
+    # create_new_team,
+    # add_an_employee,
+    # MyTasks,
+    # delete_team,
 )
 
 urlpatterns = [
