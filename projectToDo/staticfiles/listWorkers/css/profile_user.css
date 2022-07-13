@@ -1,0 +1,70 @@
+body {
+    background-color: black;
+}
+
+img[id=logout] {
+    width:50pt;
+    position: absolute;
+    top: 5pt;
+    right: 5pt;
+}
+
+h4[id=all_employees] {
+    color: white;
+    position: absolute;
+    bottom: 15%;
+    left: 85%;
+}
+
+img[id=rest]{
+    width: 5%;
+    position: absolute;
+    bottom: 5%;
+    right: 3%;
+}
+
+img[id=newteam]{
+    width: 5%;
+    position: absolute;
+    top: 20pt;
+    left: 45pt;
+    border: solid 1px white;
+}
+
+img[id=todo1]{
+    width: 5%;
+    position: absolute;
+    top: 20pt;
+    left: 140pt;
+    border: solid 1px white;
+}
+
+h5[id=teams]{
+    color: white;
+    position: absolute;
+    top: 110pt;
+    left: 45pt;
+}
+
+p {
+    position: relative;
+    top: 130pt;
+    left: 5pt;
+}
+
+img[id=teams2]{
+    width: 2%;
+
+}
+
+a[id=yourteam]{
+    color: #BFEC1B;
+    text-decoration: none;
+}
+
+img[id=app]{
+    width: 10%;
+    position: absolute;
+    bottom: 5%;
+    right: 5%;
+}

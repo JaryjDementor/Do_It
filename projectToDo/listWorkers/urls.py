@@ -12,11 +12,10 @@ from .views import (
     add_an_employee,
     MyTasks,
     delete_team,
-    ProfileUser,
 )
 
 urlpatterns = [
-    path("", ProfileUser.as_view(), name="profile_user"),
+    path("", profile_user, name="profile_user"),
     path("create-new-team/<int:iduser>", create_new_team, name="create_new_team"),
 
     path("list-workers/<int:id_team>", list_workers, name="list_workers"),

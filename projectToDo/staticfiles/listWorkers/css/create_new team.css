@@ -1,0 +1,42 @@
+body {
+    background-color: black;
+}
+
+img[id=logout] {
+    width:50pt;
+    position: absolute;
+    top: 2pt;
+    right: 2pt;
+}
+
+h2[id=text_create]{
+    color: white;
+    position: absolute;
+    top: 5%;
+    left:40%
+}
+
+form[id=form_create] {
+    width: 250pt;
+    position: absolute;
+    top: 15%;
+    left: 39%;
+}
+
+input[id=add_team]{
+    width: 20%;
+}
+
+img[id=back]{
+    width: 3%;
+    position: absolute;
+    top: 15pt;
+    left: 15pt;
+}
+
+img[id=newteam]{
+    width: 10%;
+    position: absolute;
+    bottom: 5%;
+    right: 5%;
+}

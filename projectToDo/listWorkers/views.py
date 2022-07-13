@@ -8,6 +8,7 @@ from .models import Workers, Employees_Task_List, TeamsList
 from django.http import JsonResponse, HttpResponse
 import csv
 
+from django.contrib.auth.decorators import login_required  # dekorator logowania
 
 def check_log(id_user):
     if id_user:
@@ -16,16 +17,16 @@ def check_log(id_user):
         raise PermissionDenied()
 
 
-class ProfileUser(View):
-    def get(self, request):
-        iduser = request.user.id
-        check_log(iduser)
-        teams = TeamsList.objects.filter(id_admin=iduser)
-        return render(
-            request, "listWorkers/profile_user.html", {"teams": teams, "id": iduser}
-        )
+# class ProfileUser(View):
+#     def get(self, request):
+#         iduser = request.user.id
+#         check_log(iduser)
+#         teams = TeamsList.objects.filter(id_admin=iduser)
+#         return render(
+#             request, "listWorkers/profile_user.html", {"teams": teams, "id": iduser}
+#         )
 
-
+@login_required
 def profile_user(request):
     iduser = request.user.id
     check_log(iduser)
@@ -34,10 +35,10 @@ def profile_user(request):
         request, "listWorkers/profile_user.html", {"teams": teams, "id": iduser}
     )
 
-
+@login_required
 def create_new_team(request, iduser):
-    iduser = request.user.id
-    check_log(iduser)
+    # iduser = request.user.id
+    # check_log(iduser)
     if request.method == "POST":
         form = TeamsListForm(request.POST)
         if form.is_valid():

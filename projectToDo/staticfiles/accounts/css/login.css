@@ -1,0 +1,37 @@
+body {
+    background-color: black;
+}
+
+h1{
+    color: #4AE1F0;
+    font-size: 230%;
+    position: relative;
+    left: 50%;
+    top: 10pt;
+}
+
+div form {
+    font-size: 110%;
+    color: white;
+    position: relative;
+    left: 5%;
+}
+
+input[id=login]{
+    width: 10%;
+    position: relative;
+    top: 10pt;
+    left: 18%;
+}
+
+img[id=register]{
+    width: 20%;
+    position: absolute;
+    bottom: 20pt;
+    right: 20pt;
+}
+
+
+
+
+

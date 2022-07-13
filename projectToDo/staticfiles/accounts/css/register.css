@@ -1,0 +1,50 @@
+body {
+    background-color: black;
+}
+
+
+img[id=image3] {
+    width: 20%;
+    position: absolute;
+    top: 80pt;
+    left: 120pt;
+}
+
+
+div form {
+    width: 300pt;
+    position: relative;
+    top: -28pt;
+    left: 50%;
+    color: white;
+}
+
+
+div form p {
+    font-weight:300;
+    top: -1pt;
+
+}
+
+div p {
+    position: relative;
+    top: 20pt;
+    color: white;
+}
+
+p img{
+    width: 450pt;
+    position: relative;
+    top: -150%;
+}
+
+input[id=register]{
+    width: 44%;
+}
+
+img[id=logining]{
+    width: 10%;
+    position: absolute;
+    bottom: 20pt;
+    left: 20pt;
+}

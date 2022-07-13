@@ -1,0 +1,35 @@
+body{
+    background-color: black;
+    background-size: 100% auto;
+}
+div {
+    position: absolute;
+    top: 10%;
+    left: 40%;
+    writing-mode: tb-rl;
+    transform: rotate(250deg);
+}
+
+h2[id=todo]  {
+    font-size: 500%;
+    color: white;
+}
+h5  {
+    color: white;
+    font-size: 300%;
+    position: relative;
+    left: 50pt;
+    top: 26pt;
+}
+a[id=register] {
+    color: white;
+}
+a[id=login] {
+    color: white;
+    position: relative;
+    left: -5pt;
+}
+
+img[id=image2]{
+    width: 30%;
+}

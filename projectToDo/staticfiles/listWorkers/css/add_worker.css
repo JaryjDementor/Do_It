@@ -1,0 +1,43 @@
+body {
+    background-color: black;
+}
+
+img[id=logout] {
+    width:50pt;
+    position: absolute;
+    top: 2pt;
+    right: 2pt;
+}
+
+img[id=back]{
+    width: 3%;
+    position: absolute;
+    top: 15pt;
+    left: 15pt;
+}
+
+h3[id=add_employee]{
+    color: white;
+    position: absolute;
+    top: 2%;
+    left: 40%;
+}
+
+
+form[id=form_add]{
+    width: 250pt;
+    position: absolute;
+    top: 7%;
+    left: 36.5%;
+}
+
+input[id=button_add_employee]{
+    width: 18%;
+}
+
+img[id=employee2]{
+    width: 12%;
+    position: absolute;
+    bottom: 7%;
+    right: 5%;
+}
