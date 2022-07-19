@@ -52,3 +52,23 @@ class MyTasks(View):
             return JsonResponse({"task": model_to_dict(new_task)}, status=200)
         else:
             return redirect("my_tasks", iduser)
+
+class TaskComplete(View):
+
+    def post(self, request, id):
+        iduser = request.user.id
+        # check_log(iduser)
+        task = Employees_Task_List.objects.get(id=id)
+        task.status = "Completed"
+        task.save()
+        task.completed = True
+        return JsonResponse({"task": model_to_dict(task)}, status=200)
+
+class TaskDelete(View):
+
+    def post(self, request, id):
+        # iduser = request.user.id
+        # check_log(iduser)
+        task = Employees_Task_List.objects.get(id=id)
+        task.delete()
+        return JsonResponse({"result": "ok"}, status=200)
